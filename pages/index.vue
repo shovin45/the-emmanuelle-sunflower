@@ -6,7 +6,7 @@
         li: a(href=""): img(src="../assets/images/logo-twitter-white.svg" alt="")
         li: a(href=""): img(src="../assets/images/logo-instagram-white.svg" alt="")
         li: a(href=""): img(src="../assets/images/logo-facebook-white.svg" alt="")
-        li: button: img(src="../assets/images/icon-menu.svg" alt="")
+        li: button(@click="isNavMenu=!isNavMenu"): img(src="../assets/images/icon-menu.svg" alt="")
     div.header__visual
       img.header__logo(src="../assets/images/logo-emma.png" alt="")
       h1.header__title The Emmanuelle Sunflower
@@ -14,13 +14,21 @@
         source(media="(min-width: 768px)" srcset="../assets/images/main_pc.png")
         source(media="(min-width: 321px)" srcset="../assets/images/main_sp.png")
         img(src="../assets/images/main_pc.png" alt="" width="100%")
-    nav.drawer
-      ul.drawer__list
-        li: a(href="") News
-        li: a(href="") Live
-        li: a(href="") Band
-        li: a(href="") Music
-        li: a(href="") Contact
+    transition(name="slide")
+      nav(v-if="isNavMenu").drawer
+        ul.sns-icons__drawer
+          li: a(href=""): img(src="../assets/images/logo-twitter-white.svg" alt="")
+          li: a(href=""): img(src="../assets/images/logo-instagram-white.svg" alt="")
+          li: a(href=""): img(src="../assets/images/logo-facebook-white.svg" alt="")
+          li: a(href=""): img(src="../assets/images/logo-tumblr-white.svg" alt="")
+          li: a(href=""): img(src="../assets/images/logo-youtube-white.svg" alt="")
+          li: button(@click="isNavMenu=false"): img(src="../assets/images/icon-menu-close.svg" alt="")
+        ul.drawer__list
+          li: nuxt-link(to="news") News
+          li: nuxt-link(to="live") Live
+          li: nuxt-link(to="band") Band
+          li: nuxt-link(to="music") Music
+          li: nuxt-link(to="contact") Contact
 </template>
 
 <script>
@@ -30,6 +38,14 @@ export default {
   components: {
     Logo
   },
+  data() {
+    return {
+      isNavMenu: false
+    }
+  },
+  methods: {
+
+  }
 }
 </script>
 
@@ -84,24 +100,42 @@ export default {
 
 }
 
-.sns-icons__main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
+.sns-icons{
 
-  li {
-    padding: 10px 20px;
-      img {
-        width: 30px;
-        filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
-      }
-      button {
-        padding: 5px;
-      }
+  &__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      padding: 10px 20px;
+        img {
+          width: 30px;
+          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+        button {
+          padding: 5px;
+        }
+    }
+  }
+
+  &__drawer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    li {
+      padding: 10px 20px;
+        img {
+          width: 30px;
+          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+        button {
+          padding: 5px;
+        }
+    }
   }
 }
-
 
 .a-bg {
   animation: fadeColor 50s linear infinite forwards;
@@ -129,14 +163,22 @@ export default {
 }
 
 .drawer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 4;
+  background: rgba(0,0,0,0.7);
+
+  button {
+
+  }
 
   &__list {
-    
     li {
       margin: 10px;
-      padding: 5px;
+      padding: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.2);
-      width: 60%;
 
         a {
           width: 100%;
@@ -145,6 +187,17 @@ export default {
     }
   }
 
+}
+
+.slide-enter-active {
+  transition: all .5s ease;
+}
+.slide-leave-active {
+  transition: all .5s ease;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateX(500px);
+  opacity: 0;
 }
 
 </style>
