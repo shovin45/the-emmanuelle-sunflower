@@ -3,31 +3,32 @@ div
   the-header
   section.content.news#news
     h2.content__title NEWS
-    swiper(:options="swiperOption")
-      swiper-slide.news-list: nuxt-link(to="")
-        p 2017.12.13
-        img(src="http://placehold.jp/640x400.png" alt="")
-        h3 夜祭り挽歌　iTunes配信！
-      swiper-slide.news-list: nuxt-link(to="")
-        p 2017.12.13
-        img(src="http://placehold.jp/640x400.png" alt="")
-        h3 夜祭り挽歌　iTunes配信！
-      swiper-slide.news-list: nuxt-link(to="")
-        p 2017.12.13
-        img(src="http://placehold.jp/640x400.png" alt="")
-        h3 夜祭り挽歌　iTunes配信！
-      swiper-slide.news-list: nuxt-link(to="")
-        p 2017.12.13
-        img(src="http://placehold.jp/640x400.png" alt="")
-        h3 夜祭り挽歌　iTunes配信！
-      swiper-slide.news-list: nuxt-link(to="")
-        p 2017.12.13
-        img(src="http://placehold.jp/640x400.png" alt="")
-        h3 夜祭り挽歌　iTunes配信！
-      swiper-slide.news-list: nuxt-link(to="")
-        p 2017.12.13
-        img(src="http://placehold.jp/640x400.png" alt="")
-        h3 夜祭り挽歌　iTunes配信！
+    div(v-swiper:mySwiper="swiperOption")
+      div.swiper-wrapper
+        div.swiper-slide.news-list: nuxt-link(to="")
+          p 2017.12.13
+          img(src="http://placehold.jp/640x400.png" alt="")
+          h3 夜祭り挽歌　iTunes配信！
+        div.swiper-slide.news-list: nuxt-link(to="")
+          p 2017.12.13
+          img(src="http://placehold.jp/640x400.png" alt="")
+          h3 夜祭り挽歌　iTunes配信！
+        div.swiper-slide.news-list: nuxt-link(to="")
+          p 2017.12.13
+          img(src="http://placehold.jp/640x400.png" alt="")
+          h3 夜祭り挽歌　iTunes配信！
+        div.swiper-slide.news-list: nuxt-link(to="")
+          p 2017.12.13
+          img(src="http://placehold.jp/640x400.png" alt="")
+          h3 夜祭り挽歌　iTunes配信！
+        div.swiper-slide.news-list: nuxt-link(to="")
+          p 2017.12.13
+          img(src="http://placehold.jp/640x400.png" alt="")
+          h3 夜祭り挽歌　iTunes配信！
+        div.swiper-slide.news-list: nuxt-link(to="")
+          p 2017.12.13
+          img(src="http://placehold.jp/640x400.png" alt="")
+          h3 夜祭り挽歌　iTunes配信！
     div.content__showmore: nuxt-link(to="news") Show More
   section.content.live
     h2.content__title Live Schedule
@@ -77,12 +78,12 @@ export default {
 </script>
 
 <style lang="scss">
-  .swiper-slide {
+.swiper-slide {
       width: 30%;
     }
 
 @include mq() {
-  .swiper-slide {
+.swiper-slide {
       width: 60%;
     }
 }
