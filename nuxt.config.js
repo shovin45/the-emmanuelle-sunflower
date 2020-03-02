@@ -24,12 +24,19 @@ export default {
   ** Global CSS
   */
   css: [
+    'swiper/dist/css/swiper.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/vue-awesome-swiper', ssr: false }
   ],
+  build: {
+    vendor: [
+      'vue-awesome-swiper'
+    ]
+  },
   /*
   ** Nuxt.js dev-modules
   */
@@ -42,7 +49,8 @@ export default {
   ],
   styleResources: {
     scss:[
-      '~/assets/scss/style.scss'
+      '~/assets/scss/style.scss',
+      '~/assets/scss/sns-icons.scss',
     ],
   },
   /*

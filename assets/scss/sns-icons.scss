@@ -1,0 +1,51 @@
+.sns-icons{
+
+  &__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      padding: 10px 20px;
+        img {
+          width: 30px;
+          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+        button {
+          padding: 5px;
+        }
+    }
+  }
+
+  &__drawer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    li {
+      padding: 10px 20px;
+        img {
+          width: 30px;
+          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+        button {
+          padding: 5px;
+        }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li {
+      padding: 10px 20px;
+        img {
+          width: 30px;
+          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+
+    }
+  }
+
+}
