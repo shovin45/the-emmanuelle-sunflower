@@ -30,7 +30,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-awesome-swiper' }
+    { src: '~/plugins/vue-awesome-swiper', ssr: false }
   ],
   build: {
     vendor: [
@@ -45,7 +45,8 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/style-resources',
+  modules: [
+    '@nuxtjs/style-resources',
   ],
   styleResources: {
     scss:[
