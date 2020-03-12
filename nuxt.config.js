@@ -1,7 +1,7 @@
 debugger
 require('dotenv').config()
-const { MICROCMS_API_KEY } = process.env;
-const axios = require("axios"); 
+const { MICROCMS_API_KEY } = process.env
+const axios = require("axios")
 
 export default {
   mode: 'universal',
@@ -85,22 +85,22 @@ export default {
   //     })
   //   }
   // },
-//   generate: {
-//   routes() {
-//    const posts = axios
-//     .get("https://your.microcms.io/api/v1/information", {
-//      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-//     })
-//     .then(res => {
-//      return res.data.contents.map(post => {
-//       return "articles/" + post.id;
-//      });
-//     });
-//    return Promise.all([posts]).then(values => {
-//     return values.join().split(",");
-//    });
-//   }
-//  },
+  generate: {
+  // routes() {
+  //   const posts = axios
+  //   .get("https://your.microcms.io/api/v1/information", {
+  //     headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+  //   })
+  //   .then(res => {
+  //     return res.data.contents.map(post => {
+  //     return "articles/" + post.id;
+  //     });
+  //   });
+  //   return Promise.all([posts]).then(values => {
+  //   return values.join().split(",");
+  //   });
+  // }
+  },
 // exportPathMap: async function() {
 //     const paths = {
 //       '/': {page: '/'},
