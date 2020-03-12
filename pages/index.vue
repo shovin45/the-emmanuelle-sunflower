@@ -37,7 +37,7 @@ div
 <script>
 import TheHeader from '~/components/TheHeader.vue'
 
-import client from '~/plugins/contentful'
+// import client from '~/plugins/contentful'
 
 import axios from "axios"
 

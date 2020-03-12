@@ -7,9 +7,9 @@
 
 
 <script>
-const Articls = require('~/static/json/article.json')
-import { BLOCKS } from '@contentful/rich-text-types'
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
+// const Articls = require('~/static/json/article.json')
+// import { BLOCKS } from '@contentful/rich-text-types'
+// import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
 import axios from "axios";
 
