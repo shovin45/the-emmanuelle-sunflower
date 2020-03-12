@@ -86,20 +86,20 @@ export default {
   //   }
   // },
   generate: {
-  // routes() {
-  //   const posts = axios
-  //   .get("https://your.microcms.io/api/v1/information", {
-  //     headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-  //   })
-  //   .then(res => {
-  //     return res.data.contents.map(post => {
-  //     return "articles/" + post.id;
-  //     });
-  //   });
-  //   return Promise.all([posts]).then(values => {
-  //   return values.join().split(",");
-  //   });
-  // }
+  routes() {
+    const posts = axios
+    .get("https://tes.microcms.io/api/v1/information", {
+      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+    })
+    .then(res => {
+      return res.data.contents.map(post => {
+      return "/articles/" + post.id;
+      });
+    });
+    return Promise.all([posts]).then(values => {
+    return values.join().split(",");
+  });
+  }
   },
 // exportPathMap: async function() {
 //     const paths = {
