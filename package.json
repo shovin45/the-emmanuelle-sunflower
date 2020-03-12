@@ -16,6 +16,7 @@
     "@contentful/rich-text-types": "^14.1.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/style-resources": "^1.0.0",
+    "axios": "^0.19.2",
     "contentful": "^7.14.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.11.0",

@@ -1,6 +1,7 @@
 debugger
 require('dotenv').config()
-const { API_KEY } = process.env;
+const { MICROCMS_API_KEY } = process.env;
+const axios = require("axios"); 
 
 export default {
   mode: 'universal',
@@ -51,7 +52,7 @@ export default {
   */
   modules: [
     '@nuxtjs/style-resources',
-    '@nuxtjs/dotenv',
+    '@nuxtjs/dotenv'
   ],
   styleResources: {
     scss:[
@@ -92,7 +93,7 @@ export default {
     })
     .then(res => {
      return res.data.contents.map(post => {
-      return "/articles/" + information.id;
+      return "/articles/" + post.id;
      });
     });
    return Promise.all([posts]).then(values => {
