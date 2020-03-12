@@ -5,30 +5,13 @@ div
     h2.content__title NEWS
     div(v-swiper:mySwiper="swiperOption")
       div.swiper-wrapper
-        div.swiper-slide.news-list: nuxt-link(to="")
-          p 2017.12.13
+        div.swiper-slide.news-list(v-for="item in items"): nuxt-link(:to="'articles/'+item.id")
+          p {{ item.publishedAt }}
           img(src="http://placehold.jp/640x400.png" alt="")
-          h3 夜祭り挽歌　iTunes配信！
-        div.swiper-slide.news-list: nuxt-link(to="")
-          p 2017.12.13
-          img(src="http://placehold.jp/640x400.png" alt="")
-          h3 夜祭り挽歌　iTunes配信！
-        div.swiper-slide.news-list: nuxt-link(to="")
-          p 2017.12.13
-          img(src="http://placehold.jp/640x400.png" alt="")
-          h3 夜祭り挽歌　iTunes配信！
-        div.swiper-slide.news-list: nuxt-link(to="")
-          p 2017.12.13
-          img(src="http://placehold.jp/640x400.png" alt="")
-          h3 夜祭り挽歌　iTunes配信！
-        div.swiper-slide.news-list: nuxt-link(to="")
-          p 2017.12.13
-          img(src="http://placehold.jp/640x400.png" alt="")
-          h3 夜祭り挽歌　iTunes配信！
-        div.swiper-slide.news-list: nuxt-link(to="")
-          p 2017.12.13
-          img(src="http://placehold.jp/640x400.png" alt="")
-          h3 夜祭り挽歌　iTunes配信！
+          h3  {{ item.title }}
+    //- div: ul
+    //-   li(v-for="(post, i) in posts" :key="i")
+    //-     h2 {{ post.fields.title }}
     div.content__showmore: nuxt-link(to="news") Show More
   section.content.live
     h2.content__title Live Schedule
@@ -54,7 +37,11 @@ div
 <script>
 import TheHeader from '~/components/TheHeader.vue'
 
+import client from '~/plugins/contentful'
 
+import axios from "axios"
+
+debugger
 export default {
   components: {
     TheHeader,
@@ -69,11 +56,29 @@ export default {
           el: '.swiper-pagination',
           clickable: true
         }
-      }
+      },
+      items: []
     }
   },
-  methods: {
-  },
+  // async asyncData({ env }) {
+  //   let posts = []
+  //   await client.getEntries({
+  //     content_type: env.CTF_BLOG_POST_TYPE_ID,
+  //     order: '-sys.createdAt'
+  //   }).then(res => (posts = res.items)).catch(console.error)
+  //   return { posts }
+  // }
+  async asyncData() {
+    const { data } = await axios.get(
+      "https://tes.microcms.io/api/v1/information",
+      {
+        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+      }
+    );
+    return {
+      items: data.contents
+    };
+  }
 }
 </script>
 

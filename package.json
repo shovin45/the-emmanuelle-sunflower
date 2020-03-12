@@ -8,12 +8,17 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "dev-debug": "node --inspect-brk=9229 node_modules/nuxt/bin/nuxt"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0",
+    "@contentful/rich-text-types": "^14.1.0",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/style-resources": "^1.0.0",
+    "contentful": "^7.14.0",
     "node-sass": "^4.13.1",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.11.0",
     "pug": "^2.0.4",
     "pug-html-loader": "^1.1.5",
     "pug-plain-loader": "^1.0.0",

@@ -1,3 +1,6 @@
+debugger
+require('dotenv').config()
+const { API_KEY } = process.env;
 
 export default {
   mode: 'universal',
@@ -30,7 +33,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-awesome-swiper', ssr: false }
+    { src: '~/plugins/vue-awesome-swiper', ssr: false },
+    'plugins/contentful'
   ],
   build: {
     vendor: [
@@ -47,6 +51,7 @@ export default {
   */
   modules: [
     '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
   ],
   styleResources: {
     scss:[
@@ -64,8 +69,42 @@ export default {
     extend (config, ctx) {
     }
   },
-  server: {
-    port: 8000, // デフォルト: 3000
-    host: '0.0.0.0' // デフォルト: localhost
-  },
+  // server: {
+  //   port: 8000, // デフォルト: 3000
+  //   host: '0.0.0.0' // デフォルト: localhost
+  // },
+  // generate: {
+  //   async routes() {
+  //    // contentfulからデータを取得してjsonにexportする
+  //     await outputStaticData()
+
+  //    // 取得したjsonからページを動的生成する
+  //     return Articls.items.map(i => {
+  //       return `articles/${i.fields.id}`
+  //     })
+  //   }
+  // },
+  generate: {
+  routes() {
+   const posts = axios
+    .get("https://your.microcms.io/api/v1/information", {
+     headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+    })
+    .then(res => {
+     return res.data.contents.map(post => {
+      return "/articles/" + post.id;
+     });
+    });
+   return Promise.all([careers, posts]).then(values => {
+    return values.join().split(",");
+   });
+  }
+ },
+  env: {
+    CTF_SPACE_ID: process.env.CTF_SPACE_ID,
+    CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID,
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
+    MICROCMS_API_KEY: process.env.MICROCMS_API_KEY
+  }
 }
+
