@@ -5,13 +5,10 @@ div
     h2.content__title NEWS
     div(v-swiper:mySwiper="swiperOption")
       div.swiper-wrapper
-        div.swiper-slide.news-list(v-for="item in items"): nuxt-link(:to="'articles/'+item.id")
+        div.swiper-slide.news-list(v-for="item in items"): nuxt-link(:to="'news/'+item.id")
           p {{ item.publishedAt }}
           img(src="http://placehold.jp/640x400.png" alt="")
           h3  {{ item.title }}
-    //- div: ul
-    //-   li(v-for="(post, i) in posts" :key="i")
-    //-     h2 {{ post.fields.title }}
     div.content__showmore: nuxt-link(to="news") Show More
   section.content.live
     h2.content__title Live Schedule
@@ -60,14 +57,6 @@ export default {
       items: []
     }
   },
-  // async asyncData({ env }) {
-  //   let posts = []
-  //   await client.getEntries({
-  //     content_type: env.CTF_BLOG_POST_TYPE_ID,
-  //     order: '-sys.createdAt'
-  //   }).then(res => (posts = res.items)).catch(console.error)
-  //   return { posts }
-  // }
   async asyncData() {
     const { data } = await axios.get(
       "https://tes.microcms.io/api/v1/information",

@@ -1,7 +1,6 @@
 debugger
 require('dotenv').config()
-const { MICROCMS_API_KEY } = process.env
-const axios = require("axios")
+import axios from 'axios'
 
 export default {
   mode: 'universal',
@@ -35,7 +34,6 @@ export default {
   */
   plugins: [
     { src: '~/plugins/vue-awesome-swiper', ssr: false },
-    // 'plugins/contentful'
   ],
   build: {
     vendor: [
@@ -52,7 +50,7 @@ export default {
   */
   modules: [
     '@nuxtjs/style-resources',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
   ],
   styleResources: {
     scss:[
@@ -74,17 +72,6 @@ export default {
   //   port: 8000, // デフォルト: 3000
   //   host: '0.0.0.0' // デフォルト: localhost
   // },
-  // generate: {
-  //   async routes() {
-  //    // contentfulからデータを取得してjsonにexportする
-  //     await outputStaticData()
-
-  //    // 取得したjsonからページを動的生成する
-  //     return Articls.items.map(i => {
-  //       return `articles/${i.fields.id}`
-  //     })
-  //   }
-  // },
   generate: {
   routes() {
     const posts = axios
@@ -93,7 +80,7 @@ export default {
     })
     .then(res => {
       return res.data.contents.map(post => {
-      return "/articles/" + post.id;
+      return "/news/" + post.id;
       });
     });
     return Promise.all([posts]).then(values => {
@@ -101,29 +88,7 @@ export default {
   });
   }
   },
-// exportPathMap: async function() {
-//     const paths = {
-//       '/': {page: '/'},
-//     };
-//     const key = {
-//       headers: {'X-API-KEY': process.env.MICROCMS_API_KEY},
-//     };
-//     const res = await axios.get(
-//       `https://tes.microcms.io/api/v1/information`,
-//       key,
-//     );
-//     const data = await res.data.contents;
-
-//     data.forEach(blog => {
-//       paths[`/articles/${blog.id}`] = {page: '/articles/[id]', query: {id: blog.id}};
-//     });
-
-//     return paths;
-//   },
   env: {
-    // CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-    // CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID,
-    // CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY
   }
 }
