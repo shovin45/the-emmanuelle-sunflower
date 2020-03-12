@@ -115,7 +115,7 @@ exportPathMap: async function() {
     const data = await res.data.contents;
 
     data.forEach(blog => {
-      paths[`/blogs/${blog.id}`] = {page: '/blogs/[id]', query: {id: blog.id}};
+      paths[`/articles/${blog.id}`] = {page: '/articles/[id]', query: {id: blog.id}};
     });
 
     return paths;
