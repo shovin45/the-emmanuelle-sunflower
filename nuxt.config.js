@@ -101,25 +101,25 @@ export default {
 //    });
 //   }
 //  },
-exportPathMap: async function() {
-    const paths = {
-      '/': {page: '/'},
-    };
-    const key = {
-      headers: {'X-API-KEY': process.env.MICROCMS_API_KEY},
-    };
-    const res = await axios.get(
-      `https://tes.microcms.io/api/v1/information`,
-      key,
-    );
-    const data = await res.data.contents;
+// exportPathMap: async function() {
+//     const paths = {
+//       '/': {page: '/'},
+//     };
+//     const key = {
+//       headers: {'X-API-KEY': process.env.MICROCMS_API_KEY},
+//     };
+//     const res = await axios.get(
+//       `https://tes.microcms.io/api/v1/information`,
+//       key,
+//     );
+//     const data = await res.data.contents;
 
-    data.forEach(blog => {
-      paths[`/articles/${blog.id}`] = {page: '/articles/[id]', query: {id: blog.id}};
-    });
+//     data.forEach(blog => {
+//       paths[`/articles/${blog.id}`] = {page: '/articles/[id]', query: {id: blog.id}};
+//     });
 
-    return paths;
-  },
+//     return paths;
+//   },
   env: {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
     CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID,
