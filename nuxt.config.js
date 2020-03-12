@@ -92,7 +92,7 @@ export default {
     })
     .then(res => {
      return res.data.contents.map(post => {
-      return "/articles/" + post.id;
+      return "/articles/" + information.id;
      });
     });
    return Promise.all([posts]).then(values => {
