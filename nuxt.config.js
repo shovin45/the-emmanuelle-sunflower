@@ -51,12 +51,18 @@ export default {
   modules: [
     '@nuxtjs/style-resources',
     '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit',
   ],
   styleResources: {
     scss:[
       '~/assets/scss/style.scss',
       '~/assets/scss/sns-icons.scss',
     ],
+  },
+  markdownit: {
+    html: true,
+    injected: true,
+    preset: 'default',
   },
   /*
   ** Build configuration
