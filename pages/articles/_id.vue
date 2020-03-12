@@ -2,7 +2,7 @@
   div
     h2 {{ item.title }}
     p {{ item.publishedAt }}
-    p {{ item.text }}
+    p(v-html="item.text")
 </template>
 
 

@@ -95,7 +95,7 @@ export default {
       return "/articles/" + post.id;
      });
     });
-   return Promise.all([careers, posts]).then(values => {
+   return Promise.all([posts]).then(values => {
     return values.join().split(",");
    });
   }
