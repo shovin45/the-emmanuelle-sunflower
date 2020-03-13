@@ -33,7 +33,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-awesome-swiper', ssr: false },
+    {src:'~/plugins/vue-awesome-swiper', ssr:false},
+    '~/plugins/vue-scrollto',
   ],
   build: {
     vendor: [
@@ -74,10 +75,10 @@ export default {
     extend (config, ctx) {
     }
   },
-  // server: {
-  //   port: 8000, // デフォルト: 3000
-  //   host: '0.0.0.0' // デフォルト: localhost
-  // },
+  server: {
+    port: 8000, // デフォルト: 3000
+    host: '0.0.0.0' // デフォルト: localhost
+  },
   generate: {
   routes() {
     const posts = axios

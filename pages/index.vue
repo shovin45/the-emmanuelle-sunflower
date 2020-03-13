@@ -9,7 +9,7 @@ div
           p {{ item.publishedAt }}
           img(src="http://placehold.jp/640x400.png" alt="")
           h3  {{ item.title }}
-    div.content__showmore: nuxt-link(to="news") Show More
+        div.swiper-slide.content__showmore: nuxt-link(to="news") Show More
   section.content.live
     h2.content__title Live Schedule
     div.content__showmore: nuxt-link(to="live") Show More
@@ -35,7 +35,7 @@ div
 import TheHeader from '~/components/TheHeader.vue'
 import axios from "axios"
 
-debugger
+// debugger
 export default {
   components: {
     TheHeader,

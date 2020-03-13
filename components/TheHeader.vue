@@ -11,7 +11,7 @@
         source(media="(min-width: 768px)" srcset="../assets/images/main_pc.png")
         source(media="(min-width: 321px)" srcset="../assets/images/main_sp.png")
         img(src="../assets/images/main_pc.png" alt="" width="100%")
-      nuxt-link.scroll-icon(to="#news"): img(src="../assets/images/icon-arrow-down.svg" alt="スクロール")
+      nuxt-link.scroll-icon(v-scroll-to="'#news'" to): img(src="../assets/images/icon-arrow-down.svg" alt="スクロール")
     transition(name="slide")
       nav(v-if="isNavMenu" @click="isNavMenu=false").drawer
         ul.sns-icons__drawer
