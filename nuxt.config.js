@@ -1,4 +1,3 @@
-debugger
 require('dotenv').config()
 import axios from 'axios'
 
@@ -22,7 +21,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: '~/components/loading.vue',
   /*
   ** Global CSS
   */
@@ -97,6 +96,6 @@ export default {
   },
   env: {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY
-  }
+  },
 }
 

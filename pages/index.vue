@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+div.loaded
   the-header
   section.content.news#news
     h2.content__title NEWS
