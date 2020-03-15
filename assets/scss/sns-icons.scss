@@ -19,8 +19,11 @@
 
   &__drawer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0 auto;
 
     li {
       padding: 10px 20px;
@@ -35,6 +38,8 @@
   }
 
   &__footer {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;

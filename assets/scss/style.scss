@@ -1,4 +1,5 @@
 $breakpoints: (
+  'xs': 'screen and (max-width: 319px)',
   'sm': 'screen and (max-width: 399px)',
   'md': 'screen and (max-width: 767px)',
   'lg': 'screen and (max-width: 999px)',
@@ -11,8 +12,12 @@ $breakpoints: (
   }
 }
 
-html {
+html{
   background: #000;
+  // visibility: hidden;
+}
+html.wf-active {
+  // visibility: visible;
 }
 body {
   overflow-y: scroll;
@@ -27,6 +32,13 @@ body {
   background: #000;
 }
 
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
+  
+}
 
 // reset css
 button {
@@ -45,4 +57,33 @@ a, ul, li, p, h1, h2, h3, h4 {
   color: #fff;
   padding: 0;
   font-family: 'Helvetica';
+}
+
+
+//アニメーション背景
+.a-bg {
+  animation: fadeColor 40s linear infinite forwards;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+@keyframes fadeColor {
+  0% {
+    background: red;
+  }
+  33% {
+    background: yellow;
+  }
+  66% {
+    background: blue;
+  }
+  100% {
+    background: red;
+  }
+}
+header,section,footer {
+  position: relative;
 }

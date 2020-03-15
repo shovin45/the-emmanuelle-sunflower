@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    h2 NEWS一覧
     div(v-for="item in items")
       nuxt-link(:to="'news/'+item.id")
         h3  {{ item.title }}
@@ -10,6 +11,7 @@
 import axios from "axios"
 
 export default {
+  layout:'post',
   components: {
   },
   data() {
@@ -27,6 +29,15 @@ export default {
     return {
       items: data.contents
     };
+  },
+  methods: {
+    timeStamp(times){
+      var date = new Date(times)
+      var year = date.getFullYear()
+      var month = date.getMonth() + 1
+      var day = date.getDate()
+      return year + '年' + month + '月' + day + '日'
+    }
   }
 }
 </script>
