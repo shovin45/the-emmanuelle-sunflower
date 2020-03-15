@@ -1,5 +1,5 @@
 <template lang="pug">
-div.loaded
+div
   the-header
   section.content.news#news
     h2.content__title NEWS
@@ -53,7 +53,7 @@ export default {
           clickable: true
         }
       },
-      items: []
+      items: [],
     }
   },
   async asyncData() {
@@ -76,11 +76,17 @@ export default {
       var day = date.getDate()
       return year + '年' + month + '月' + day + '日'
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss">
+.roading {
+  visibility: hidden;
+  &.finished {
+    visibility: visible;
+  }
+}
 .swiper-slide {
       width: 30%;
     }

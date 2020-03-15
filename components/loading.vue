@@ -10,10 +10,6 @@ export default {
   data: () => ({
     loading: false
   }),
-  mounted () {
-    this.start()
-    setTimeout(() => this.finish(), 2000)
-  },
   methods: {
     start () {
       this.loading = true
@@ -44,11 +40,14 @@ export default {
   }
 }
 
+.fade {
+  &-enter-active, &-leave-active {
+    transition: opacity 0.8s ease;
+  }
 
-.fade-leave-active {
-  transition: all 0.8s ease;
+  &-enter, &-leave-to {
+    opacity: 0;
+  }
 }
-.fade-leave-to {
-  opacity: 0;
-}
+
 </style>
