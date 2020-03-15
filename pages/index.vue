@@ -5,7 +5,7 @@ div
     h2.content__title NEWS
     div(v-swiper:mySwiper="swiperOption")
       div.swiper-wrapper
-        div.swiper-slide.news-list(v-for="item in items"): nuxt-link(:to="'news/'+item.id")
+        div.swiper-slide.news-list(v-for="item in limitCount"): nuxt-link(:to="'news/'+item.id")
           p {{ timeStamp(item.publishedAt) }}
           img(src="http://placehold.jp/640x400.png" alt="")
           h3  {{ item.title }}
@@ -77,6 +77,11 @@ export default {
       return year + '年' + month + '月' + day + '日'
     }
   },
+  computed: {
+    limitCount() {
+      return this.items.slice(0,3)
+    }
+  }
 }
 </script>
 
