@@ -1,5 +1,6 @@
 <template lang="pug">
 div
+  div.loading-overlay loading...
   the-header
   section.content.news#news
     h2.content__title NEWS
@@ -171,4 +172,13 @@ footer {
   }
 }
 
+.loading-overlay {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
