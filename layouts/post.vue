@@ -1,9 +1,12 @@
 <template lang="pug">
 div
-  header.container
+  header.container.lower
+    div.header__visual
+        nuxt-link.tohome(to="/"): img.header__logo(src="../assets/images/logo-emma.png" alt="")
     div.header__bar
       ul.drawer__icon
         li: button(@click="isNavMenu=!isNavMenu"): img(src="../assets/images/icon-menu.svg" alt="")
+
     transition(name="slide")
       nav(v-if="isNavMenu" @click="isNavMenu=false").drawer
         ul.drawer__icon
@@ -33,8 +36,43 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.container {
-  height: 150px;
+<style lang="scss">
+.tohome {
+  display: inline-block;
 }
+.container.lower {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+
+  .header {
+    &__bar {
+        position: fixed;
+        padding: 5vh 2vw;
+        top: 0;
+        right: 0;
+        z-index: 0;
+        display: inline-block;
+      }
+
+      &__logo {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 2vh 2vw;
+        width: 220px;
+        z-index: 1;
+        display: inline-block;
+        @include mq() {
+          width: 160px;
+        }
+      }
+      &__visual {
+        text-align: left;
+      }
+  }
+}
+
+
 </style>

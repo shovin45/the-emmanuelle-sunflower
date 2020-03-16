@@ -49,11 +49,10 @@ export default {
 
     .header {
       &__bar {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
         padding: 5vh 2vw;
-        position: absolute;
+        position: fixed;
+        top: 0;
+        right: 0;
         z-index: 2;
       }
 
@@ -105,61 +104,5 @@ export default {
 
 div.header__visual {
   position: relative;
-}
-
-.drawer {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 2;
-  background: rgba(0,0,0,0.8);
-  padding: 5vh 2vw;
-  overflow-y: scroll;
-
-  &__list {
-    li {
-      margin: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      
-
-        a {
-          padding: 4vh 5vw;
-          width: 100%;
-          display: block;
-          font-style: italic;
-          letter-spacing: 1.5px;
-        }
-    }
-  }
-  &__icon {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-
-    li {
-      padding: 10px 20px;
-        img {
-          width: 30px;
-          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
-        }
-        button {
-          padding: 5px;
-        }
-    }
-
-  }
-
-}
-
-.slide-enter-active {
-  transition: all 0.8s ease;
-}
-.slide-leave-active {
-  transition: all 0.8s ease;
-}
-.slide-enter, .slide-leave-to {
-  transform: translateX(500px);
-  opacity: 0;
 }
 </style>

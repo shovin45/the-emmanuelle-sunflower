@@ -1,0 +1,87 @@
+
+
+.button {
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 10px 40px;
+    position: relative;
+    padding: 1vh 2vw;
+    display: inline-block;
+    border-radius: 2px;
+    color: #fff;
+}
+
+
+/* Effect1
+ *************************************** */
+.linear-border {
+  &:after,&:before {
+    background-color: #fff;
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 10;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+  }
+  &__inner {
+    &:after,&:before {
+      background-color: #fff;
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 10;
+      transition: all .3s ease;
+      -webkit-transition: all .3s ease;
+    }
+  }
+}
+
+.linear-border {
+  &:after {
+    height: 1px;
+    left: -1px;
+    top: -1px;
+    width: 0px;
+  }
+  &:before {
+    bottom: -1px;
+    height: 1px;
+    right: -1px;
+    width: 0px;
+  }
+  &__inner {
+    &:after {
+      bottom: -1px;
+      height: 0px;
+      left: -1px;
+      width: 1px;
+    }
+    &:before {
+      height: 0px;
+      right: -1px;
+      top: -1px;
+      width: 1px;
+    }
+  }
+}
+
+
+/* hover */
+.linear-border {
+    &:hover,&:active {
+      height: 100%;
+      height: calc(100% + 1px);
+    &:after,&:before {
+      width: 100%;
+      width: calc(100% + 1px);
+    }
+  }
+}
+
+.linear-border:hover .linear-border__inner:after,
+.linear-border:hover .linear-border__inner:before,
+.linear-border:active .linear-border__inner:after,
+.linear-border:active .linear-border__inner:before {
+    height: 100%;
+    height: calc(100% + 1px);
+}

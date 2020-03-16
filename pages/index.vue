@@ -9,17 +9,17 @@ div
           p {{ timeStamp(item.publishedAt) }}
           img(src="http://placehold.jp/640x400.png" alt="")
           h3  {{ item.title }}
-        div.swiper-slide.content__showmore: nuxt-link(to="news") Show More
+        div.swiper-slide.content__showmore: nuxt-link.button(to="news").linear-border: span.linear-border__inner Show More
     div.a-bg
   section.content.live
     h2.content__title Live Schedule
     p 現在スケジュールされているライブはありません。
-    div.content__showmore: nuxt-link(to="live") Show More
+    div.content__showmore: nuxt-link.button(to="live").linear-border: span.linear-border__inner Show More
     div.a-bg
   section.content.video
     h2.content__title VIDEO
     iframe.content__video(src="https://www.youtube.com/embed/RIU_56FGPZs?controls=0&playsinline=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
-    div.content__showmore: a(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank") Show More
+    div.content__showmore: a.button.linear-border(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank"): span.linear-border__inner Show More
     div.a-bg
 
   footer
@@ -117,16 +117,7 @@ export default {
     margin: 4vh 0 ;
     position: relative;
     z-index: 1;
-
-      a {
-        text-align: center;
-        padding: 1vh 2vw;
-        display: inline-block;
-        background: #ccc;
-        border-radius: 2px;
-        color: #000;
-      }
-  }
+}
   &__video {
     margin: 0 auto;
     display: block;

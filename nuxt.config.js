@@ -26,7 +26,7 @@ export default {
   ** Global CSS
   */
   css: [
-    'swiper/dist/css/swiper.css'
+    'swiper/dist/css/swiper.css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -57,6 +57,8 @@ export default {
     scss:[
       '~/assets/scss/style.scss',
       '~/assets/scss/sns-icons.scss',
+      '~/assets/scss/button.scss',
+      '~/assets/scss/drawer.scss',
     ],
   },
   markdownit: {
