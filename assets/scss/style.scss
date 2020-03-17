@@ -86,3 +86,14 @@ a, ul, li, p, h1, h2, h3, h4 {
 header,section,footer {
   position: relative;
 }
+
+
+.fade-enter-active {
+  transition: all 0.8s ease;
+}
+.fade-leave-active {
+  transition: all 0.8s ease;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

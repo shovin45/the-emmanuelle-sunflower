@@ -36,9 +36,7 @@ export default {
     '~/plugins/vue-scrollto',
   ],
   build: {
-    vendor: [
-      'vue-awesome-swiper'
-    ]
+    vendor: ['vue-awesome-swiper']
   },
   /*
   ** Nuxt.js dev-modules
@@ -59,6 +57,7 @@ export default {
       '~/assets/scss/sns-icons.scss',
       '~/assets/scss/button.scss',
       '~/assets/scss/drawer.scss',
+      '~/assets/scss/loading-icon.scss',
     ],
   },
   markdownit: {
