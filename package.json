@@ -16,6 +16,7 @@
     "@nuxtjs/markdownit": "^1.2.9",
     "@nuxtjs/style-resources": "^1.0.0",
     "axios": "^0.19.2",
+    "epic-spinners": "^1.1.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.11.0",
     "pug": "^2.0.4",
