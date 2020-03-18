@@ -24,18 +24,19 @@
     }
   }
   &__icon {
-        position: absolute;
+        padding: 5vh 5vw;
+        position: fixed;
         top: 0;
         right: 0;
+        z-index: 2;
 
     li {
-      padding: 10px 20px;
         img {
           width: 30px;
           filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
         }
         button {
-          padding: 5px;
+          padding: 10px;
         }
     }
 

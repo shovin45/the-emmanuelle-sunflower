@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  article.news-article
     h2 {{ item.title }}
     p {{ timeStamp(item.publishedAt) }}
     p(v-html="$md.render(item.body)")
@@ -38,3 +38,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.news-article {
+  max-width: 1200px;
+  margin: auto;
+  padding: 5vw;
+
+}
+
+</style>

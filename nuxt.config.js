@@ -21,7 +21,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: '~/components/loading.vue',
+  // loading: '~/components/LoadingOverlay.vue',
   /*
   ** Global CSS
   */
@@ -98,5 +98,6 @@ export default {
   env: {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY
   },
+  
 }
 

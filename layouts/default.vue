@@ -1,8 +1,29 @@
-<template>
-  <div>
-    <nuxt />
-  </div>
+<template lang="pug">
+  div
+    transition(name="fade")
+      loading-overlay(v-if="!isLoaded")
+    nuxt
+
 </template>
+
+<script>
+import LoadingOverlay from '~/components/LoadingOverlay.vue'
+
+export default {
+  data() {
+    return {
+      isNavMenu: false,
+      isLoaded: false,
+    }
+  },
+  components: {
+    LoadingOverlay,
+  },
+  mounted () {
+      return this.isLoaded = true
+  }
+}
+</script>
 
 <style>
 html {

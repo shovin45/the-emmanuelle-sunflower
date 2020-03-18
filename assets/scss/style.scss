@@ -48,6 +48,7 @@ button {
 
 img {
   vertical-align: bottom;
+  width: 100%;
 }
 
 a, ul, li, p, h1, h2, h3, h4 {
@@ -56,6 +57,7 @@ a, ul, li, p, h1, h2, h3, h4 {
   color: #fff;
   padding: 0;
   font-family: 'Helvetica';
+  word-break: break-word;
 }
 
 

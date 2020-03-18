@@ -1,10 +1,12 @@
 <template lang="pug">
-  div
+  div.news-list-page
     h2 NEWS一覧
-    div(v-for="item in items")
-      nuxt-link(:to="'news/'+item.id")
-        h3  {{ item.title }}
-        img(src="http://placehold.jp/200x200.png" alt="")
+    ul.news-list-page__item
+      li(v-for="item in items")
+        nuxt-link(:to="'news/'+item.id")
+          h3  {{ item.title }}
+          p {{ timeStamp(item.publishedAt) }}
+          img(src="http://placehold.jp/640x400.png" alt="")
 </template>
 
 <script>
@@ -41,3 +43,27 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.news-list-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 5vw;
+
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    li {
+      flex-basis: 30%;
+      margin: 0 0 5vh 0;
+
+      @include mq() {
+        flex-basis: 100%;
+      }
+    }
+  }
+}
+
+</style>

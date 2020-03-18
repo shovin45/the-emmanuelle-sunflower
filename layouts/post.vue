@@ -1,5 +1,8 @@
 <template lang="pug">
 div
+  transition(name="fade")
+      loading-overlay(v-if="!isLoaded")
+
   header.container.lower
     div.header__visual
         nuxt-link.tohome(to="/"): img.header__logo(src="../assets/images/logo-emma.png" alt="")
@@ -8,7 +11,7 @@ div
         li: button(@click="isNavMenu=!isNavMenu"): img(src="../assets/images/icon-menu.svg" alt="")
 
     transition(name="slide")
-      nav(v-if="isNavMenu" @click="isNavMenu=false").drawer
+      nav.drawer(v-if="isNavMenu" @click="isNavMenu=false")
         ul.drawer__icon
           li: button(@click="isNavMenu=false"): img(src="../assets/images/icon-menu-close.svg" alt="")
         p Follow us
@@ -27,11 +30,20 @@ div
 </template>
 
 <script>
+import LoadingOverlay from '~/components/LoadingOverlay.vue'
+
 export default {
   data() {
     return {
       isNavMenu: false,
+      isLoaded: false,
     }
+  },
+  components: {
+    LoadingOverlay,
+  },
+  mounted () {
+      return this.isLoaded = true
   }
 }
 </script>
