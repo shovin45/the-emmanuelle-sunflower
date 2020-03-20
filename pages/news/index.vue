@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.news-list-page
+  div.news-list-page.lower-page
     h2 NEWS一覧
     ul.news-list-page__item
       li(v-for="item in items")
@@ -46,21 +46,26 @@ export default {
 
 <style lang="scss">
 .news-list-page {
-  max-width: $maxWidth;
-  margin: auto;
-  padding: $spPadding;
 
   &__item {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: flex-start;
 
     li {
       flex-basis: 30%;
       margin: 0 0 5vh 0;
 
       @include mq() {
-        flex-basis: 100%;
+        flex-basis: 42vw;
+        margin: 0 2vw 5vh 0;
+        h3 {
+          min-height: 48px;
+        }
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
       }
     }
   }

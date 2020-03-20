@@ -15,7 +15,7 @@ $breakpoints: (
 //set window max-width
 $maxWidth: 1200px;
 //set theme color
-$themeColor: #1a1a1a;
+$themeColor: #111;
 //set loot font size
 $fontSize: 14px;
 
@@ -129,3 +129,9 @@ header,section,footer {
   opacity: 0;
 }
 
+
+.lower-page {
+  max-width: $maxWidth;
+  margin: auto;
+  padding: $spPadding;
+}

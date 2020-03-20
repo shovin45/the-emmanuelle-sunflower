@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.lower-page
     h2 LIVE
 </template>
 

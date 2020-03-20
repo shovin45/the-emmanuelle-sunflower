@@ -8,7 +8,6 @@
   background: $themeColor;
   padding: 5vh 2vw;
   overflow-y: scroll;
-  overflow-x: hidden;
   visibility: hidden;
 
   @include mq() {
@@ -22,18 +21,19 @@
   &__list {
     padding: 3vh 2vw 6vh;
     li {
-      margin: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.2);
-      text-align: center;
+      text-align: left;
 
         a {
-          padding: 4vh 5vw;
+          font-size: 1.2rem;
+          padding: 4vh 10vw;
           width: 100%;
           display: block;
           letter-spacing: 2px;
 
           &:hover,
           &:active {
+            background: #333;
             color: #fff;
             transition: 0.3s;
           }
