@@ -1,36 +1,31 @@
 .sns-icons{
+&__drawer,
+&__footer {
+  img {
+    width: 30px;
+    filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+    opacity: 0.9;
 
-  &__main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    li {
-      padding: 10px 20px;
-        img {
-          width: 30px;
-          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
-        }
-        button {
-          padding: 5px;
-        }
+    &:hover,
+    &:active {
+      opacity: 1;
+      transition: 0.3s;
     }
   }
-
+}
   &__drawer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 50%;
+    width: 40%;
+    padding: 3vh 2vw 6vh;
     margin: 0 auto;
 
     li {
-      padding: 10px 20px;
-        img {
-          width: 30px;
-          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
-        }
+      padding: 2vh 0;
+      flex-basis: calc(100% / 2);
+      text-align: center;
         button {
           padding: 5px;
         }
@@ -41,14 +36,23 @@
     position: relative;
     z-index: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+
+    @include mq() {
+      justify-content: center;
+      margin: 2vh 0;
+    }
+
     li {
       padding: 10px 20px;
-        img {
-          width: 30px;
-          filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+      &:last-child {
+        padding-right: 0;
+
+        @include mq() {
+          padding-right: 20px;
         }
+      }
 
     }
   }

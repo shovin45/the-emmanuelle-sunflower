@@ -1,35 +1,49 @@
 .drawer {
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  width: 60vw;
   height: 100vh;
-  z-index: 2;
-  background: rgba(0,0,0,0.8);
+  z-index: 3;
+  background: $themeColor;
   padding: 5vh 2vw;
   overflow-y: scroll;
+  overflow-x: hidden;
+  visibility: hidden;
+
+  @include mq() {
+    width: 80vw;
+  }
+
+  &--visible {
+    visibility: visible;
+  }
 
   &__list {
+    padding: 3vh 2vw 6vh;
     li {
       margin: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.2);
-      
+      text-align: center;
 
         a {
           padding: 4vh 5vw;
           width: 100%;
           display: block;
-          font-style: italic;
-          letter-spacing: 1.5px;
+          letter-spacing: 2px;
+
+          &:hover,
+          &:active {
+            color: #fff;
+            transition: 0.3s;
+          }
         }
     }
   }
   &__icon {
         padding: 5vh 5vw;
-        position: fixed;
         top: 0;
         right: 0;
-        z-index: 2;
-
     li {
         img {
           width: 30px;
@@ -40,10 +54,37 @@
         }
     }
 
+    &.open {
+        position: fixed;
+    }
+    &.close {
+        position: absolute;
+
+    }
+
   }
+
+  &__title {
+    text-align: center;
+  }
+
+&::-webkit-scrollbar,
+&::-webkit-scrollbar-track,
+&::-webkit-scrollbar-thumb {
+  display: none;
+}
 
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background: rgba(0,0,0,0.6);
+  cursor: pointer;
+}
 
 .slide-enter-active {
   transition: all 0.8s ease;
@@ -52,6 +93,6 @@
   transition: all 0.8s ease;
 }
 .slide-enter, .slide-leave-to {
-  transform: translateX(500px);
-  opacity: 0;
+  transform: translateX(-100vw);
 }
+

@@ -41,9 +41,9 @@ export default {
 
 <style lang="scss">
 .news-article {
-  max-width: 1200px;
+  max-width: $maxWidth;
   margin: auto;
-  padding: 5vw;
+  padding: $spPadding;
 
 }
 

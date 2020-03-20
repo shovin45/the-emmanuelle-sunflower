@@ -46,9 +46,9 @@ export default {
 
 <style lang="scss">
 .news-list-page {
-  max-width: 1200px;
+  max-width: $maxWidth;
   margin: auto;
-  padding: 5vw;
+  padding: $spPadding;
 
   &__item {
     display: flex;

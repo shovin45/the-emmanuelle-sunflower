@@ -12,13 +12,43 @@ $breakpoints: (
   }
 }
 
+//set window max-width
+$maxWidth: 1200px;
+//set theme color
+$themeColor: #1a1a1a;
+//set loot font size
+$fontSize: 14px;
+
+$spPadding: 5vw;
+
+$primaryFontColor: #ccc;
+
 html{
-  background: #000;
   // visibility: hidden;
 }
 html.wf-active {
   // visibility: visible;
 }
+
+html {
+  font-family: 'Helvetica Neue', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,  Arial, sans-serif;
+  font-size: $fontSize;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  background: $themeColor;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 body {
   overflow-y: scroll;
   -ms-overflow-style: none;    /* IE, Edge 対応 */
@@ -29,7 +59,7 @@ body {
 }
 
 .container::-webkit-scrollbar-thumb {
-  background: #000;
+  background: $themeColor;
 }
 
 .page-enter-active, .page-leave-active {
@@ -54,9 +84,8 @@ img {
 a, ul, li, p, h1, h2, h3, h4 {
   list-style-type: none;
   text-decoration: none;
-  color: #fff;
+  color: $primaryFontColor;
   padding: 0;
-  font-family: 'Helvetica';
   word-break: break-word;
 }
 
@@ -99,3 +128,4 @@ header,section,footer {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+

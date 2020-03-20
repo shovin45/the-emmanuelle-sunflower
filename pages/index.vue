@@ -1,6 +1,5 @@
 <template lang="pug">
 div
-  the-header
   section.content.news#news
     h2.content__title NEWS
     div(v-swiper:mySwiper="swiperOption")
@@ -22,25 +21,14 @@ div
     div.content__showmore: a.button.linear-border(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank"): span.linear-border__inner Show More
     div.a-bg
 
-  footer
-    ul.sns-icons__footer
-      li: a(href="https://twitter.com/E_Sunflower" target="_blank"): img(src="../assets/images/logo-twitter-white.svg" alt="")
-      li: a(href="https://www.instagram.com/the_emmanuelle_sunflower/" target="_blank"): img(src="../assets/images/logo-instagram-white.svg" alt="")
-      li: a(href="https://www.facebook.com/e.sunflower/" target="_blank"): img(src="../assets/images/logo-facebook-white.svg" alt="")
-      li: a(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank"): img(src="../assets/images/logo-youtube-white.svg" alt="")
-    small Copyright (C) 2015 The Emmanuelle Sunflower.
-    div.a-bg
+
 </template>
 
 <script>
-import TheHeader from '~/components/TheHeader.vue'
 import axios from "axios"
 
 // debugger
 export default {
-  components: {
-    TheHeader,
-  },
   data() {
     return {
       swiperOption: {
@@ -148,18 +136,6 @@ export default {
   }
   a {
     display: block;
-  }
-}
-
-footer {
-  background: #000;
-  padding: 8vh 0vw 4vh;
-  text-align: center;
-
-  small {
-    display: block;
-    color: #fff;
-    margin: 2vh 0 0 0;
   }
 }
 </style>

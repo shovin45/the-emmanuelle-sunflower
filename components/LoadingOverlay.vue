@@ -27,8 +27,8 @@
   z-index: 9999999;
   width: 100vw;
   height: 100vh;
-  background: #000;
-  color: #fff;
+  background: $themeColor;
+  color: $primaryFontColor;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,43 +1,18 @@
 <template lang="pug">
   header.container
-    ul.drawer__icon
-      li: button(@click="isNavMenu=!isNavMenu"): img(src="../assets/images/icon-menu.svg" alt="")
     div.header__visual
       img.header__logo(src="../assets/images/logo-emma.png" alt="")
       h1.header__title The Emmanuelle Sunflower
       picture.header__picture
         source(media="(max-width: 767px)" srcset="../assets/images/main_sp.png")
         img(src="../assets/images/main_pc.png" alt="" width="100%")
-    nuxt-link.scroll-icon(v-scroll-to="'#news'" to): img(src="../assets/images/icon-arrow-down.svg" alt="スクロール")
+    div.scroll-icon
+      nuxt-link(v-scroll-to="'#news'" to)
+        p Scroll
+        img(src="../assets/images/icon-arrow-down.svg" alt="")
     div.a-bg
-    transition(name="slide")
-      nav.drawer(v-if="isNavMenu" @click="isNavMenu=false")
-        ul.drawer__icon
-          li: button(@click="isNavMenu=false"): img(src="../assets/images/icon-menu-close.svg" alt="")
-        p Follow us
-        ul.sns-icons__drawer
-          li: a(href="https://twitter.com/E_Sunflower" target="_blank"): img(src="../assets/images/logo-twitter-white.svg" alt="")
-          li: a(href="https://www.instagram.com/the_emmanuelle_sunflower/" target="_blank"): img(src="../assets/images/logo-instagram-white.svg" alt="")
-          li: a(href="https://www.facebook.com/e.sunflower/" target="_blank"): img(src="../assets/images/logo-facebook-white.svg" alt="")
-          li: a(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank"): img(src="../assets/images/logo-youtube-white.svg" alt="")
-        ul.drawer__list
-          li: nuxt-link(to="/news") News
-          li: nuxt-link(to="/live") Live
-          li: nuxt-link(to="/band") Band
-          li: nuxt-link(to="/music") Music
-          li: nuxt-link(to="/contact") Contact
-
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isNavMenu: false,
-    }
-  }
-}
-</script>
 
 <style lang="scss">
 .container {
@@ -91,6 +66,11 @@ export default {
       z-index: 1;
       display: inline-block;
       animation: fade-loop 2s infinite linear;
+
+      p {
+        font-size: 0.5rem;
+        margin: 0 0 5px 0;
+      }
     }
 
 }
