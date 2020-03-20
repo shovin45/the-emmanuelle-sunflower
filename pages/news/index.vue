@@ -6,7 +6,7 @@
         nuxt-link(:to="'news/'+item.id")
           h3  {{ item.title }}
           p {{ timeStamp(item.publishedAt) }}
-          img(src="http://placehold.jp/640x400.png" alt="")
+          img(src="https://placehold.jp/640x400.png" alt="")
 </template>
 
 <script>

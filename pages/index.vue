@@ -6,7 +6,7 @@ div
       div.swiper-wrapper
         div.swiper-slide.news-list(v-for="item in limitCount"): nuxt-link(:to="'news/'+item.id")
           p {{ timeStamp(item.publishedAt) }}
-          img(src="http://placehold.jp/640x400.png" alt="")
+          img(src="https://placehold.jp/640x400.png" alt="")
           h3  {{ item.title }}
         div.swiper-slide.content__showmore: nuxt-link.button(to="news").linear-border: span.linear-border__inner Show More
     div.a-bg
