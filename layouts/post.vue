@@ -71,7 +71,7 @@ export default {
         }
       }
       &__title {
-        color: #fff;
+        color: #ccc;
         font-style: italic;
         font-weight: bold;
         font-size: 3rem;
@@ -80,7 +80,7 @@ export default {
         position: static;
 
         @include mq() {
-          font-size: 1.6rem;
+          font-size: 1.8rem;
           text-align: left;
         }
       }

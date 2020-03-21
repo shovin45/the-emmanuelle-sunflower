@@ -1,11 +1,11 @@
 <template lang="pug">
 div
   section.content.news#news
-    h2.content__title NEWS
+    h2.content__title News
     div(v-swiper:mySwiper="swiperOption")
       div.swiper-wrapper
-        div.swiper-slide.news-list(v-for="item in limitCount"): nuxt-link(:to="'news/'+item.id")
-          p {{ timeStamp(item.publishedAt) }}
+        div.swiper-slide.news-list(v-for="item in limitCount"): nuxt-link(:to="'news/' + item.id")
+          p {{ dateTimeToDate(item.publishedAt) }}
           img(
             src="~/assets/images/pic-post-alpha-bg.png"
             alt=""
@@ -15,11 +15,11 @@ div
     div.a-bg
   section.content.live
     h2.content__title Live Schedule
-    p 現在スケジュールされているライブはありません。
+    //- p 現在スケジュールされているライブはありません。
     div.content__showmore: nuxt-link.button(to="live").linear-border: span.linear-border__inner Show More
     div.a-bg
   section.content.video
-    h2.content__title VIDEO
+    h2.content__title Video
     iframe.content__video(src="https://www.youtube.com/embed/RIU_56FGPZs?controls=0&playsinline=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
     div.content__showmore: a.button.linear-border(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank"): span.linear-border__inner Show More
     div.a-bg
@@ -43,7 +43,7 @@ export default {
           el: '.swiper-pagination',
           clickable: true
         },
-        freeMode: true
+        // freeMode: true
       },
       items: [],
       liveItems: [],
@@ -61,13 +61,6 @@ export default {
 
   },
   methods: {
-    timeStamp(times){
-      var date = new Date(times)
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1
-      var day = date.getDate()
-      return year + '年' + month + '月' + day + '日'
-    },
     setDefaultImage(image) {
       var defaultImageUrl = defaultIamge
       if(image) { return 'url(\'' + image.url + '\')' }
@@ -98,9 +91,14 @@ export default {
 
 .content {
   overflow: hidden;
+  padding: 10vh 0 10vh 0;
+
+  @include mq() {
+    padding: 5vh 0 5vh 0;
+  }
 
   &__title {
-    padding: 8vh 0;
+    padding: 4vh 0 6vh;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -127,19 +125,18 @@ export default {
 }
 .news {
     background: url('~assets/images/bg-section-news.png') no-repeat;
-    background-size: cover;
     background-position: 50% 50%;
-    padding :0 0 10vh 0;
+    background-size: cover;
   }
 .live {
     background: url('~assets/images/bg-section-live.png') no-repeat;
-    background-size: cover;
     background-position: 50% 20%;
+    background-size: cover;
   }
 .video {
     background: url('~assets/images/bg-section-video.png') no-repeat;
-    background-size: cover;
     background-position: 50% 20%;
+    background-size: cover;
   }
 
 
@@ -150,6 +147,9 @@ export default {
     background-position: center;
     background-size: cover;
 
+  }
+  h3 {
+          min-height: 48px;
   }
   a {
     display: block;

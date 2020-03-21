@@ -31,7 +31,7 @@ html.wf-active {
 }
 
 html {
-  font-family: 'Helvetica Neue', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,  Arial, sans-serif;
+  font-family: 'Noto Sans JP', 'Helvetica Neue', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,  Arial, sans-serif;
   font-size: $fontSize;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -80,6 +80,10 @@ a, ul, li, p, h1, h2, h3, h4 {
   color: $primaryFontColor;
   padding: 0;
   word-break: break-word;
+}
+iframe {
+  border-width: none;
+  border-style: none;
 }
 
 

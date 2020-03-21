@@ -12,10 +12,11 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      {name: 'robots', content: ['noindex','nofollow']}
+      {name: 'Keywords', content: 'エマニエルサンフラワー,エマニュエルサンフラワー,エマサン,アイリッシュ,ブルース,海賊'}
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Alfa+Slab+One|Noto+Sans+JP:400,500,700,900&display=swap&subset=japanese' },
     ]
   },
   /*
@@ -33,6 +34,7 @@ export default {
   */
   plugins: [
     {src:'~/plugins/vue-awesome-swiper', ssr:false},
+    {src: '~/plugins/common', ssr: true},
     '~/plugins/vue-scrollto',
   ],
   build: {
@@ -109,4 +111,3 @@ export default {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY
   },
 }
-debugger

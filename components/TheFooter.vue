@@ -40,7 +40,10 @@
   }
 
   &__logo {
-    width: 200px;
+    width: 210px;
+    @include mq() {
+    width: 140px;
+    }
   }
 
   small {
@@ -65,9 +68,10 @@
   }
 
   li {
-    margin: 26px 0 0 0;
+    margin: 30px 0 0 0;
     letter-spacing: 2px;
     font-size: 0.9rem;
+    font-weight: 500;
 
     a {
       &:hover,

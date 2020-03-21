@@ -1,9 +1,9 @@
 <template lang="pug">
-  article.lower-page
+  article.live-article.lower-page
     h2 {{ item.title }}
-    p {{ timeStamp(item.playedAt) }}
-    p {{ item.location }}
-    p(v-html="$md.render(item.detail)")
+    h3.live-article__playedAt {{ dateTimeToDate(item.playedAt) }}
+    h3(v-if="item.location") {{ '@' + item.location }}
+    p.live-article__body(v-html="$md.render(item.detail)")
 </template>
 
 <script>
@@ -27,14 +27,29 @@ export default {
       item: data
     };
   },
-  methods: {
-    timeStamp(times){
-      var date = new Date(times)
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1
-      var day = date.getDate()
-      return year + '年' + month + '月' + day + '日'
-    }
-  },
 }
 </script>
+
+<style lang="scss">
+.live-article {
+  &__playedAt {
+    margin: 10px 0 0;
+  }
+  &__body {
+    margin: 30px 0;
+    img {
+      width: initial;
+      max-width: 80%;
+    }
+    a {
+      text-decoration: underline;
+      transition: 0.3s;
+      &:hover,
+      &:active {
+        color: #999;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+</style>

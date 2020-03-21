@@ -1,12 +1,12 @@
 <template lang="pug">
   div.live-list-page.lower-page
-    h2.lower-page__title LIVE
+    h2.lower-page__title Live一覧
     ul.live-list-page__item
       li(v-for="item in items")
         nuxt-link(:to="'/live/' + item.id")
+          p {{ dateTimeToDate(item.playedAt) }}
           h3 {{ item.title }}
-          p {{ timeStamp(item.playedAt) }}
-          p {{ '@'+item.location }}
+          p(v-if="item.location") {{ '@'+item.location }}
 </template>
 
 <script>
@@ -30,15 +30,6 @@ export default {
       items: data.contents
     }
   },
-  methods: {
-    timeStamp(times){
-      var date = new Date(times)
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1
-      var day = date.getDate()
-      return year + '年' + month + '月' + day + '日'
-    }
-  },
 }
 </script>
 
@@ -47,7 +38,8 @@ export default {
 
   &__item {
     li {
-      padding: 20px 0 10px 0;
+      padding: 20px 0 20px 0;
+      border-bottom: 1px #333 solid;
     }
   }
 }

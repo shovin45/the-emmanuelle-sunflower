@@ -1,15 +1,14 @@
 {
-  "name": "the-emmanuelle-sunflower",
+  "name": "The Emmanuelle Sunflower",
   "version": "1.0.0",
-  "description": "My exquisite Nuxt.js project",
+  "description": "The Emmanuelle Sunflower オフィシャルウェブサイト",
   "author": "shovin45",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "dev-debug": "node --inspect-brk=9229 node_modules/nuxt/bin/nuxt"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",

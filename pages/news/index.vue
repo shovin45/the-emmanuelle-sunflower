@@ -1,12 +1,12 @@
 <template lang="pug">
   div.news-list-page.lower-page
-    h2.lower-page__title NEWS一覧
+    h2.lower-page__title News一覧
     ul.news-list-page__item
       li(v-for="item in items")
         nuxt-link(:to="'/news/'+item.id")
           h3  {{ item.title }}
-          p {{ timeStamp(item.publishedAt) }}
-          img(
+          p.news-list-page__item__date {{ dateTimeToDate(item.publishedAt) }}
+          img.news-list-page__item__image(
             src="~/assets/images/pic-post-alpha-bg.png"
             alt=""
             :style="{ 'background-image': setDefaultImage(item.image) }")
@@ -37,13 +37,6 @@ export default {
     }
   },
   methods: {
-    timeStamp(times){
-      var date = new Date(times)
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1
-      var day = date.getDate()
-      return year + '年' + month + '月' + day + '日'
-    },
     setDefaultImage(image) {
       var defaultImageUrl = defaultIamge
       if(image) { return 'url(\'' + image.url + '\')' }
@@ -82,6 +75,12 @@ export default {
           margin-right: 0;
         }
       }
+    }
+    &__date {
+      margin: 5px 0 0;
+    }
+    &__image {
+      margin: 5px 0 0;
     }
   }
 }

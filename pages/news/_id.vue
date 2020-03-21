@@ -1,8 +1,8 @@
 <template lang="pug">
   article.news-article.lower-page
     h2 {{ item.title }}
-    p {{ timeStamp(item.publishedAt) }}
-    p(v-html="$md.render(item.body)")
+    p.news-article__publishedAt {{ dateTimeToDate(item.publishedAt) }}
+    p.news-article__body(v-html="$md.render(item.body)")
     div.inlineContent(v-html="item.inlineContent" v-if="item.inlineContent")
 </template>
 
@@ -27,22 +27,31 @@ export default {
     return {
       item: data
     };
-  },
-  methods: {
-    timeStamp(times){
-      var date = new Date(times)
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1
-      var day = date.getDate()
-      return year + '年' + month + '月' + day + '日'
-    }
-  },
+  }
 }
 </script>
 
 <style lang="scss">
 .news-article {
-
+  &__publishedAt {
+    margin: 10px 0 0;
+  }
+  &__body {
+    margin: 30px 0;
+    img {
+      width: initial;
+      max-width: 80%;
+    }
+    a {
+      text-decoration: underline;
+      transition: 0.3s;
+      &:hover,
+      &:active {
+        color: #999;
+        transition: 0.3s;
+      }
+    }
+  }
 }
 .inlineContent {
   margin: 30px auto 0;

@@ -42,7 +42,7 @@ export default {
         width: 220px;
         transform: translateX(100vw);
         @include mq() {
-          width: 160px;
+          width: 120px;
         }
         &.logo-slide {
           animation: title-slide 0.6s ease-out forwards;
@@ -61,6 +61,7 @@ export default {
 
       &__title {
         color: #fff;
+        font-family: 'Helvetica Neue';
         font-style: italic;
         font-weight: bold;
         font-size: 12vw;
@@ -72,7 +73,7 @@ export default {
 
         @include mq() {
           font-size: 16vw;
-          bottom: 16vh;
+          bottom: 18vh;
         }
         &.title-slide {
           animation: title-slide 0.3s ease-out forwards;
@@ -97,6 +98,10 @@ export default {
       z-index: 1;
       display: inline-block;
       animation: fade-loop 2s infinite linear;
+
+      @include mq() {
+        bottom: 14vh;
+      }
 
       p {
         font-size: 0.5rem;

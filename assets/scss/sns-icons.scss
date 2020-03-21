@@ -2,7 +2,7 @@
 &__drawer,
 &__footer {
   img {
-    width: 30px;
+    width: 25px;
     filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
     opacity: 0.9;
 
@@ -15,16 +15,18 @@
 }
   &__drawer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
     width: 40%;
     padding: 3vh 2vw 6vh;
     margin: 0 auto;
 
+    @include mq() {
+      width: 80%;
+    }
+
     li {
       padding: 2vh 0;
-      flex-basis: calc(100% / 2);
       text-align: center;
         button {
           padding: 5px;
@@ -33,11 +35,11 @@
   }
 
   &__footer {
-    position: relative;
-    z-index: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
+    z-index: 1;
 
     @include mq() {
       justify-content: center;
