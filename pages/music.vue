@@ -1,6 +1,6 @@
 <template lang="pug">
   div.lower-page
-    h2 DISCOGRAPHY
+    h2.lower-page__title DISCOGRAPHY
     section.disc
         img(src="~/assets/images/pic-discography-ep-2nd.png" width="250" height="250")
         div.disc__info

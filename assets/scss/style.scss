@@ -134,4 +134,9 @@ header,section,footer {
   max-width: $maxWidth;
   margin: auto;
   padding: $spPadding;
+
+  &__title {
+    font-size: 1.8rem;
+    padding: 20px 0 50px;
+  }
 }

@@ -1,6 +1,6 @@
 <template lang="pug">
   div.contact-page.lower-page
-    h2 Contact
+    h2.lower-page__title Contact
     p お問い合わせはメールフォームからお願いいたします。
     form(name="contactform" action="/complete" method="POST" data-netlify-recaptcha="true" data-netlify="true")
       p.input-area: label お名前 / Name #[span.required *必須]

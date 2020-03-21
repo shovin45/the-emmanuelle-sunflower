@@ -1,6 +1,6 @@
 <template lang="pug">
   div.lower-page
-    h2 LIVE
+    h2.lower-page__title LIVE
 </template>
 
 <script>

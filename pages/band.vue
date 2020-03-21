@@ -1,6 +1,6 @@
 <template lang="pug">
   div.lower-page
-    h2 BAND
+    h2.lower-page__title BAND
     ul.member-list
       li.member-list__item
         p: img(src="../assets/images/b-iga-wt.png" alt="" width="300" height="180")

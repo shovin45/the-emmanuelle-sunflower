@@ -1,6 +1,6 @@
 <template lang="pug">
   div.news-list-page.lower-page
-    h2 NEWS一覧
+    h2.lower-page__title NEWS一覧
     ul.news-list-page__item
       li(v-for="item in items")
         nuxt-link(:to="'news/'+item.id")
