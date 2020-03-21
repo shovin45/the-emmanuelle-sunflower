@@ -3,7 +3,7 @@
     h2.lower-page__title Contact
     p お問い合わせはメールフォームからお願いいたします。
     client-only
-      form(name="contactform" action="/complete" method="POST" netlify-honeypot="bot-field" data-netlify="true")
+      form(name="contactform" action="/complete/" method="POST" netlify-honeypot="bot-field" data-netlify="true")
         input(type="hidden" name="form-name" value="contactform")
         p.input-area(style="display: none;"): label Don’t fill this out:
           input(type="text" name="bot-field")
