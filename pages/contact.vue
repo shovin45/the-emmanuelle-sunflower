@@ -3,8 +3,9 @@
     h2.lower-page__title Contact
     p お問い合わせはメールフォームからお願いいたします。
     client-only
-      form(name="contactform" action="/complete" method="POST" data-netlify-recaptcha="true" data-netlify="true")
+      form(name="contactform" action="/complete" method="POST" netlify-honeypot="bot-field" data-netlify="true")
         input(type="hidden" name="form-name" value="contactform")
+        p(style="display: none;"): label Don’t fill this out: #[input(name="bot-field")]
         p.input-area: label お名前 / Name #[span.required *必須]
           input(type="text" name="name" v-model="name" placeholder="例 : やまだたろう" required)
         p.input-area: label メールアドレス / Email #[span.required *必須]
@@ -13,8 +14,6 @@
           input(type="tel" name="phone" v-model="phone" placeholder="例 : 09012345678")
         p.input-area: label 本文 / Message #[span.required *必須]
           textarea(type="text" name="message" v-model="message" placeholder="お問い合わせ内容" required)
-
-        div(data-netlify-recaptcha="true")
 
         p
           input(type="checkbox" name="agree" id="agree" v-model="agreed")
