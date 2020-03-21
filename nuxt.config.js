@@ -86,18 +86,27 @@ export default {
       headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
     })
     .then(res => {
+      console.log(res)
       return res.data.contents.map(post => {
-      return "/news/" + post.id;
-      });
-    });
-    return Promise.all([posts]).then(values => {
-    return values.join().split(",");
-  });
+        return "/news/" + post.id
+      })
+    })
+    const lives = axios
+    .get("https://tes.microcms.io/api/v1/live-schedule", {
+      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+    })
+    .then(res2 => {
+      return res2.data.contents.map(live => {
+        return "/live/" + live.id
+      })
+    })
+      return axios.all([posts,lives]).then(values => {
+        return values.join().split(",");
+      })
   }
   },
   env: {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY
   },
-  
 }
-
+debugger

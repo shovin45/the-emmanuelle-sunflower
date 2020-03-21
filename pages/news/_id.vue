@@ -1,9 +1,9 @@
 <template lang="pug">
-  article.news-article
+  article.news-article.lower-page
     h2 {{ item.title }}
     p {{ timeStamp(item.publishedAt) }}
     p(v-html="$md.render(item.body)")
-    div.inlineContent(v-html="item.inlineContent")(v-if="item.inlineContent")
+    div.inlineContent(v-html="item.inlineContent" v-if="item.inlineContent")
 </template>
 
 
@@ -42,9 +42,6 @@ export default {
 
 <style lang="scss">
 .news-article {
-  max-width: $maxWidth;
-  margin: auto;
-  padding: $spPadding;
 
 }
 .inlineContent {

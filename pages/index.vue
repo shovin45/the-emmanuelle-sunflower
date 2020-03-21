@@ -46,19 +46,19 @@ export default {
         freeMode: true
       },
       items: [],
+      liveItems: [],
     }
   },
-  async asyncData() {
-    const { data } = await axios.get(
-      "https://tes.microcms.io/api/v1/information",
-      {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-      }
-    )
-    return {
-      items: data.contents
-    }
-    console.log(this.timeStamp(data.contents.publishedAt))
+  async asyncData({ params }) {
+      var { data } = await axios
+      .get(
+        "https://tes.microcms.io/api/v1/information",
+        {
+          headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+        }
+      )
+      return { items: data.contents }
+
   },
   methods: {
     timeStamp(times){
