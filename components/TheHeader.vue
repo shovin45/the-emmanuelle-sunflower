@@ -45,11 +45,11 @@ export default {
           width: 120px;
         }
         &.logo-slide {
-          animation: title-slide 0.6s ease-out forwards;
+          animation: title-slide 0.6s cubic-bezier(.17,.67,.28,1.04) forwards;
           animation-delay: 0.8s;
 
           @include mq() {
-            animation-duration: 1s;
+            animation-duration: 0.6s;
           }
         }
       }
@@ -61,6 +61,7 @@ export default {
 
       &__title {
         color: #fff;
+        line-height: 1;
         font-family: 'Helvetica Neue';
         font-style: italic;
         font-weight: bold;
@@ -68,19 +69,19 @@ export default {
         text-align: left;
         filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.4));
         position: absolute;
-        bottom: 8vh;
-        transform: translateX(-100vw);
+        bottom: 12vh;
+        transform: translateX(-300vw);
 
         @include mq() {
           font-size: 16vw;
           bottom: 18vh;
         }
         &.title-slide {
-          animation: title-slide 0.3s ease-out forwards;
+          animation: title-slide 0.2s cubic-bezier(.17,.67,.28,1.04) forwards;
           animation-delay: 1.2s;
 
           @include mq() {
-            animation-duration: 0.6s;
+            animation-duration: 0.4s;
           }
         }
       }
@@ -93,14 +94,15 @@ export default {
     }
 
     .scroll-icon {
-      position: relative;
-      bottom: 10vh;
+      position: absolute;
+      bottom: 6vh;
+      left: 46%;
       z-index: 1;
       display: inline-block;
       animation: fade-loop 2s infinite linear;
 
       @include mq() {
-        bottom: 14vh;
+        bottom: 7vh;
       }
 
       p {

@@ -132,11 +132,17 @@ export default {
     background: url('~assets/images/bg-section-live.png') no-repeat;
     background-position: 50% 20%;
     background-size: cover;
+    @include mq(){
+      background-position: 50% 20px;
+    }
   }
 .video {
     background: url('~assets/images/bg-section-video.png') no-repeat;
     background-position: 50% 20%;
     background-size: cover;
+    @include mq(){
+      background-position: 70% 50%;
+    }
   }
 
 

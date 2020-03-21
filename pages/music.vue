@@ -2,7 +2,7 @@
   div.lower-page
     h2.lower-page__title DISCOGRAPHY
     section.disc
-        img(src="~/assets/images/pic-discography-ep-2nd.png" width="250" height="250")
+        div.disc__cover: img(src="~/assets/images/pic-discography-ep-2nd.png" width="250" height="250")
         div.disc__info
           h3 Ghost Ship
           p 2015.10.30 release
@@ -17,7 +17,7 @@
             li 夜汽車とダイナマイト
             li Ghost Ship
     section.disc
-        img(src="~/assets/images/pic-discography-ep-1st.png" width="250" height="250")
+        div.disc__cover: img(src="~/assets/images/pic-discography-ep-1st.png" width="250" height="250")
         div.disc__info
           h3 Beautiful EP
           p 1st EP<br>2012.2.8 release
@@ -29,9 +29,9 @@
             li ロビンズデイ
             li 21世紀のジョン・リー・フッカーとチーズとミネストローネ
             li 弱者達の宴(LIVE@横浜B.B.STREET 2011.8.29)
-          iframe(width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/3161135&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false")
+        iframe(width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/3161135&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false")
     section.disc
-        img(src="~/assets/images/pic-discography-album-1st.png" width="250" height="250")
+        div.disc__cover: img(src="~/assets/images/pic-discography-album-1st.png" width="250" height="250")
         div.disc__info
           h3 弱者達の宴
           p 1st album<br>2010.1.17 release
@@ -48,9 +48,9 @@
             li 弱者達の宴
             li 虫だから
             li いばら
-          iframe(width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/3161356&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false")
+        iframe(width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/3161356&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false")
     section.disc
-        img(src="~/assets/images/pic-discography-demo-2nd.png" width="250" height="250")
+        div.disc__cover: img(src="~/assets/images/pic-discography-demo-2nd.png" width="250" height="250")
         div.disc__info
           h3 心ここに無き溢れるメロディー
           p 2nd demo<br>2008.4.26 release
@@ -64,9 +64,9 @@
             li 眠たい森
             li トカゲ(LIVE)
             li いばら(LIVE)
-          iframe(width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/73063941&amp;color=ff6600&amp;show_artwork=false")
+        iframe(width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/73063941&amp;color=ff6600&amp;show_artwork=false")
     section.disc
-        img(src="~/assets/images/pic-discography-demo-1st.png" width="250" height="250")
+        div.disc__cover: img(src="~/assets/images/pic-discography-demo-1st.png" width="250" height="250")
         div.disc__info
           h3 The Emmanuelle Sunflower
           p 1st demo<br>2007.11.20 release
@@ -89,28 +89,45 @@ export default {
 .disc {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   margin: 0 0 10vh 0;
+  padding: 0 0 10vh 0;
+  border-bottom: 1px solid #555 ;
 
   img {
     width: 250px;
     margin: 0 30px 0 0;
-  @include mq(sm) {
+  @include mq() {
+    width: 100%;
+    height: auto;
     margin: 0 0 20px 0;
   }
   }
-
-  &__info {
-    flex-basis: 50vw;
+  &__cover {
+    flex-basis: 50%;
+    text-align: right;
+    @include mq() {
+      flex-basis: 100%;
+    }
   }
 
+  &__info {
+    flex-basis: 50%;
+    @include mq() {
+      flex-basis: 100%;
+    }
+  }
+
+  iframe[src*="soundcloud.com"] {
+    margin: 30px 0 0;
+  }
 }
 .track-list {
   ol, li {
     list-style-type: decimal-leading-zero;
   }
-  
+
 }
 
 </style>
