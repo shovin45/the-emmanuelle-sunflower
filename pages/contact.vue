@@ -5,15 +5,16 @@
     client-only
       form(name="contactform" action="/complete" method="POST" netlify-honeypot="bot-field" data-netlify="true")
         input(type="hidden" name="form-name" value="contactform")
-        p(style="display: none;"): label Don’t fill this out: #[input(name="bot-field")]
+        p.input-area(style="display: none;"): label Don’t fill this out:
+          input(type="text" name="bot-field")
         p.input-area: label お名前 / Name #[span.required *必須]
-          input(type="text" name="name" v-model="name" placeholder="例 : やまだたろう" required)
+          input(type="text" name="name" placeholder="例 : やまだたろう" required)
         p.input-area: label メールアドレス / Email #[span.required *必須]
-          input(type="text" name="email" v-model="email" placeholder="例 : emma-sun@gmail.com" required)
+          input(type="text" name="email" placeholder="例 : emma-sun@gmail.com" required)
         p.input-area: label お電話番号 / Phone Number
-          input(type="tel" name="phone" v-model="phone" placeholder="例 : 09012345678")
+          input(type="tel" name="phone" placeholder="例 : 09012345678")
         p.input-area: label 本文 / Message #[span.required *必須]
-          textarea(type="text" name="message" v-model="message" placeholder="お問い合わせ内容" required)
+          textarea(type="text" name="message" placeholder="お問い合わせ内容" required)
 
         p
           input(type="checkbox" name="agree" id="agree" v-model="agreed")
