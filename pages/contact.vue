@@ -12,7 +12,7 @@
         p.input-area: label メールアドレス / Email #[span.required *必須]
           input(type="email" name="email" placeholder="例 : emma-sun@gmail.com" required)
         p.input-area: label お電話番号 / Phone Number
-          input(type="tel" name="phone" placeholder="例 : 09012345678" pattern="/^[0-9]+$/" title="半角数字をハイフン(-)なしで入力して下さい。")
+          input(type="tel" name="phone" placeholder="例 : 09012345678")
         p.input-area: label 本文 / Message #[span.required *必須]
           textarea(type="text" name="message" placeholder="お問い合わせ内容" required)
 
