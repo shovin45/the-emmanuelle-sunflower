@@ -6,11 +6,11 @@
       p.input-area: label お名前 / Name #[span.required *必須]
         input(type="text" name="name" v-model="name" placeholder="例 : やまだたろう" required)
       p.input-area: label メールアドレス / Email #[span.required *必須]
-        input(type="text" name="email" vmodel="email" placeholder="例 : emma-sun@gmail.com" required)
+        input(type="text" name="email" v-model="email" placeholder="例 : emma-sun@gmail.com" required)
       p.input-area: label お電話番号 / Phone Number
-        input(type="tel" name="phone" vmodel="phone" placeholder="例 : 09012345678")
+        input(type="tel" name="phone" v-model="phone" placeholder="例 : 09012345678")
       p.input-area: label 本文 / Message #[span.required *必須]
-        textarea(type="text" name="message" vmodel="message" placeholder="お問い合わせ内容" required)
+        textarea(type="text" name="message" v-model="message" placeholder="お問い合わせ内容" required)
 
       div(data-netlify-recaptcha="true")
 
