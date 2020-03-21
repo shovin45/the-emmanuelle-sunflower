@@ -1,9 +1,12 @@
 <template lang="pug">
   div
-    header.container.lower
-      div.header__visual
-          nuxt-link.tohome(to="/"): img.header__logo(src="../assets/images/logo-emma.png" alt="")
-      div.header__bar
+    transition(name="fade")
+      header.container.lower
+        div.header__visual
+          nuxt-link.tohome(to="/")
+            img.header__logo(src="../assets/images/logo-emma.png" alt="")
+          h1.header__title The Emmanuelle Sunflower
+        div.header__bar
 
     drawer-modal
     nuxt
@@ -62,12 +65,29 @@ export default {
         width: 220px;
         z-index: 1;
         display: inline-block;
+        transform: translateX(0);
         @include mq() {
-          width: 160px;
+          width: 120px;
+        }
+      }
+      &__title {
+        color: #fff;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 3rem;
+        transform: translateX(0);
+        filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.4));
+        position: static;
+
+        @include mq() {
+          font-size: 1.6rem;
+          text-align: left;
         }
       }
       &__visual {
         text-align: left;
+        display: flex;
+        align-items: center;
       }
   }
 }

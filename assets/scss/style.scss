@@ -62,13 +62,6 @@ body {
   background: $themeColor;
 }
 
-.page-enter-active, .page-leave-active {
-  transition: opacity .5s;
-}
-.page-enter, .page-leave-to {
-  opacity: 0;
-}
-
 // reset css
 button {
   background: none;
@@ -119,13 +112,28 @@ header,section,footer {
 }
 
 
-.fade-enter-active {
-  transition: all 0.8s ease;
+// animation
+// name: page
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s;
 }
-.fade-leave-active {
+.page-enter, .page-leave-to {
+  opacity: 0;
+}
+
+// name: fade
+.fade-enter-active, .fade-leave-active {
   transition: all 0.8s ease;
 }
 .fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+// name: fade
+.titleslide-enter-active {
+  transition: all 0.8s ease;
+}
+.titleslide-enter {
   opacity: 0;
 }
 

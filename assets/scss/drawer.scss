@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 60vw;
+  width: 40vw;
   height: 100vh;
   z-index: 3;
   background: $themeColor;
@@ -22,10 +22,10 @@
     padding: 3vh 2vw 6vh;
     li {
       border-bottom: 1px solid rgba(255,255,255,0.2);
-      text-align: left;
+      text-align: center;
 
         a {
-          font-size: 1.2rem;
+          font-size: 1rem;
           padding: 4vh 10vw;
           width: 100%;
           display: block;

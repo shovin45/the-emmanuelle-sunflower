@@ -6,7 +6,10 @@ div
       div.swiper-wrapper
         div.swiper-slide.news-list(v-for="item in limitCount"): nuxt-link(:to="'news/'+item.id")
           p {{ timeStamp(item.publishedAt) }}
-          img(src="https://placehold.jp/640x400.png" alt="")
+          img(
+            src="~/assets/images/pic-post-alpha-bg.png"
+            alt=""
+            :style="{ 'background-image': setDefaultImage(item.image) }")
           h3  {{ item.title }}
         div.swiper-slide.content__showmore: nuxt-link.button(to="news").linear-border: span.linear-border__inner Show More
     div.a-bg
@@ -26,6 +29,7 @@ div
 
 <script>
 import axios from "axios"
+import defaultIamge from "~/assets/images/pic-post-default.png"
 
 // debugger
 export default {
@@ -38,7 +42,8 @@ export default {
         pagination: {
           el: '.swiper-pagination',
           clickable: true
-        }
+        },
+        freeMode: true
       },
       items: [],
     }
@@ -63,6 +68,11 @@ export default {
       var day = date.getDate()
       return year + '年' + month + '月' + day + '日'
     },
+    setDefaultImage(image) {
+      var defaultImageUrl = defaultIamge
+      if(image) { return 'url(\'' + image.url + '\')' }
+      else { return 'url(\'' + defaultImageUrl + '\')' }
+    }
   },
   computed: {
     limitCount() {
@@ -73,6 +83,9 @@ export default {
 </script>
 
 <style lang="scss">
+.swiper-wrapper {
+  align-items: center;
+}
 .swiper-slide {
       width: 30%;
     }
@@ -133,6 +146,10 @@ export default {
 .news-list {
   img {
     width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
   }
   a {
     display: block;

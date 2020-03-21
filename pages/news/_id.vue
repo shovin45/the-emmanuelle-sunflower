@@ -3,6 +3,7 @@
     h2 {{ item.title }}
     p {{ timeStamp(item.publishedAt) }}
     p(v-html="$md.render(item.body)")
+    div.inlineContent(v-html="item.inlineContent")(v-if="item.inlineContent")
 </template>
 
 
@@ -35,7 +36,7 @@ export default {
       var day = date.getDate()
       return year + '年' + month + '月' + day + '日'
     }
-  }
+  },
 }
 </script>
 
@@ -46,5 +47,16 @@ export default {
   padding: $spPadding;
 
 }
+.inlineContent {
+  margin: 30px auto 0;
+  text-align: center;
+  iframe[src*="youtube.com"] {
+    display: inline-block;
+    @include mq() {
+      width: 80%;
+    }
+  }
+}
+
 
 </style>

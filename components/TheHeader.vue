@@ -1,8 +1,8 @@
 <template lang="pug">
   header.container
     div.header__visual
-      img.header__logo(src="../assets/images/logo-emma.png" alt="")
-      h1.header__title The Emmanuelle Sunflower
+      img.header__logo(src="../assets/images/logo-emma.png" alt="" :class="{ 'logo-slide': titleStart }")
+      h1.header__title(:class="{ 'title-slide': titleStart }") The Emmanuelle Sunflower
       picture.header__picture
         source(media="(max-width: 767px)" srcset="../assets/images/main_sp.png")
         img(src="../assets/images/main_pc.png" alt="" width="100%")
@@ -12,6 +12,19 @@
         img(src="../assets/images/icon-arrow-down.svg" alt="")
     div.a-bg
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      titleStart: false
+    }
+  },
+  mounted() {
+    return this.titleStart = true
+  }
+}
+</script>
 
 
 <style lang="scss">
@@ -27,8 +40,17 @@
         position: absolute;
         margin: 2vh 2vw;
         width: 220px;
+        transform: translateX(100vw);
         @include mq() {
           width: 160px;
+        }
+        &.logo-slide {
+          animation: title-slide 0.6s ease-out forwards;
+          animation-delay: 0.8s;
+
+          @include mq() {
+            animation-duration: 1s;
+          }
         }
       }
       &__visual {
@@ -46,10 +68,19 @@
         filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.4));
         position: absolute;
         bottom: 8vh;
+        transform: translateX(-100vw);
 
         @include mq() {
           font-size: 16vw;
           bottom: 16vh;
+        }
+        &.title-slide {
+          animation: title-slide 0.3s ease-out forwards;
+          animation-delay: 1.2s;
+
+          @include mq() {
+            animation-duration: 0.6s;
+          }
         }
       }
 
@@ -78,5 +109,17 @@
 
 div.header__visual {
   position: relative;
+}
+
+
+@keyframes title-slide {
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes logo-slide {
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>

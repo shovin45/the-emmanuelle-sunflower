@@ -1,4 +1,5 @@
 <template lang="pug">
+transition(name="page")
   div
     the-header
     transition(name="fade")
