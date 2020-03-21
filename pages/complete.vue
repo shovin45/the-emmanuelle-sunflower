@@ -1,7 +1,9 @@
 <template lang="pug">
-  div
-    p お問い合わせを受け付けました。
-    nuxt-link(to="/") トップに戻る
+  div.lower-page
+    p: strong お問い合わせを受け付けました。
+    p 順次メールにてお返事いたしますので、しばらくお待ちください。
+    p ※自動返信メールは送信されません。
+    div.content__showmore: nuxt-link.button(to="/") トップに戻る
 </template>
 
 <script>
