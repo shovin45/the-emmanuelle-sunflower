@@ -2,22 +2,24 @@
   div.contact-page.lower-page
     h2.lower-page__title Contact
     p お問い合わせはメールフォームからお願いいたします。
-    form(name="contactform" action="/complete" method="POST" data-netlify-recaptcha="true" data-netlify="true")
-      p.input-area: label お名前 / Name #[span.required *必須]
-        input(type="text" name="name" v-model="name" placeholder="例 : やまだたろう" required)
-      p.input-area: label メールアドレス / Email #[span.required *必須]
-        input(type="text" name="email" v-model="email" placeholder="例 : emma-sun@gmail.com" required)
-      p.input-area: label お電話番号 / Phone Number
-        input(type="tel" name="phone" v-model="phone" placeholder="例 : 09012345678")
-      p.input-area: label 本文 / Message #[span.required *必須]
-        textarea(type="text" name="message" v-model="message" placeholder="お問い合わせ内容" required)
+    client-only
+      form(name="contactform" action="/complete" method="POST" data-netlify-recaptcha="true" data-netlify="true")
+        input(type="hidden" name="form-name" value="contactform")
+        p.input-area: label お名前 / Name #[span.required *必須]
+          input(type="text" name="name" v-model="name" placeholder="例 : やまだたろう" required)
+        p.input-area: label メールアドレス / Email #[span.required *必須]
+          input(type="text" name="email" v-model="email" placeholder="例 : emma-sun@gmail.com" required)
+        p.input-area: label お電話番号 / Phone Number
+          input(type="tel" name="phone" v-model="phone" placeholder="例 : 09012345678")
+        p.input-area: label 本文 / Message #[span.required *必須]
+          textarea(type="text" name="message" v-model="message" placeholder="お問い合わせ内容" required)
 
-      div(data-netlify-recaptcha="true")
+        div(data-netlify-recaptcha="true")
 
-      p
-        input(type="checkbox" name="agree" id="agree" v-model="agreed")
-        label(for="agree") 上記送信内容で問題なければチェックを入れてください。
-      div.content__showmore: button.button(type="submit" :disabled="!agreed") 送信
+        p
+          input(type="checkbox" name="agree" id="agree" v-model="agreed")
+          label(for="agree") 上記送信内容で問題なければチェックを入れてください。
+        div.content__showmore: button.button(type="submit" :disabled="!agreed") 送信
 
 </template>
 
