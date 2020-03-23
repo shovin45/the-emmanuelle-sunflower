@@ -1,7 +1,7 @@
 require('dotenv').config()
 import axios from 'axios'
 
-const url = 'https://the-emmanuelle-sunflower.com/'
+const url = 'https://the-emmanuelle-sunflower.com'
 const title = 'The Emmanuelle Sunflower オフィシャルWebサイト'
 const description = 'ドカドカうるさいインディアンジプシーアイリッシュスカレゲエお祭りパンクトラディショナルファンキーロックンロールバンドのオフィシャルWebサイト'
 const Keywords = 'エマニエルサンフラワー,エマニュエルサンフラワー,エマサン,The Emmanuelle Sunflower,アイリッシュ,ブルース,海賊'
@@ -20,7 +20,7 @@ export default {
       {name: 'Keywords', content: Keywords },
       { property: 'og:title', content: title },
       { property: 'og:type', content: 'blog' },
-      { property: 'og:image', content: 'https://emma-sun.com/wp/wp-content/themes/moondogs00/images/ogplogo.png' },
+      { property: 'og:image', content: url + '/ogp.png' },
       { property: 'og:url', content: url },
       { property: 'og:description', content: description },
       { property: 'og:site_name', content: title },
