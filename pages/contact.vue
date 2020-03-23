@@ -33,8 +33,14 @@ export default {
       phone: '',
       message: '',
       agreed: false,
+      title: 'Contact',
     }
-  }
+  },
+  head() {
+    return {
+      title: this.title,
+    }
+  },
 }
 </script>
 

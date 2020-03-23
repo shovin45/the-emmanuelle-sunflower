@@ -49,6 +49,11 @@ export default {
       liveItems: [],
     }
   },
+  head() {
+    return {
+      title: 'トップ',
+    }
+  },
   async asyncData({ params }) {
       var { data } = await axios
       .get(

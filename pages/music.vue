@@ -1,6 +1,6 @@
 <template lang="pug">
   div.lower-page
-    h2.lower-page__title DISCOGRAPHY
+    h2.lower-page__title {{ title }}
     section.disc
         div.disc__cover: img(src="~/assets/images/pic-discography-ep-2nd.png" width="250" height="250")
         div.disc__info
@@ -82,6 +82,16 @@
 <script>
 export default {
   layout:'post',
+  data() {
+    return {
+      title: 'DISCOGRAPHY',
+    }
+  },
+  head() {
+    return {
+      title: this.title,
+    }
+  },
 }
 </script>
 

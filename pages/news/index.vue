@@ -1,6 +1,6 @@
 <template lang="pug">
   div.news-list-page.lower-page
-    h2.lower-page__title News一覧
+    h2.lower-page__title {{ title }}
     ul.news-list-page__item
       li(v-for="item in items")
         nuxt-link(:to="'/news/'+item.id")
@@ -18,11 +18,15 @@ import defaultIamge from "~/assets/images/pic-post-default.png"
 
 export default {
   layout:'post',
-  components: {
-  },
   data() {
     return {
+      title: 'News',
       items: []
+    }
+  },
+  head() {
+    return {
+      title: this.title,
     }
   },
   async asyncData({ params }) {

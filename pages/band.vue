@@ -1,6 +1,6 @@
 <template lang="pug">
   div.lower-page
-    h2.lower-page__title Band
+    h2.lower-page__title {{ title }}
     ul.member-list
       li.member-list__item
         p: img(src="../assets/images/b-iga.png" alt="" width="300" height="180")
@@ -46,6 +46,16 @@
 <script>
 export default {
   layout:'post',
+  data() {
+    return {
+      title: 'Band',
+    }
+  },
+  head() {
+    return {
+      title: this.title,
+    }
+  },
 }
 </script>
 

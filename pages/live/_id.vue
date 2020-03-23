@@ -16,6 +16,11 @@ export default {
       items: []
     }
   },
+  head() {
+    return {
+      title: this.item.title,
+    }
+  },
   async asyncData({ params }) {
     const { data } = await axios.get(
       `https://tes.microcms.io/api/v1/live-schedule/${params.id}`,

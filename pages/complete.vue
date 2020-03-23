@@ -9,5 +9,19 @@
 <script>
 export default {
   layout: 'post',
+  data() {
+    return {
+      title: 'お問い合わせ受付完了',
+    }
+  },
+  head() {
+    return {
+      titleTemplate: '',
+      title: this.title,
+      meta: [
+        { name: 'robots', content: 'noindex,nofollow' }
+      ]
+    }
+  },
 }
 </script>

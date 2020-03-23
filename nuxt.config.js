@@ -1,20 +1,38 @@
 require('dotenv').config()
 import axios from 'axios'
 
+const url = 'https://the-emmanuelle-sunflower.com/'
+const title = 'The Emmanuelle Sunflower オフィシャルWebサイト'
+const description = 'ドカドカうるさいインディアンジプシーアイリッシュスカレゲエお祭りパンクトラディショナルファンキーロックンロールバンドのオフィシャルWebサイト'
+const Keywords = 'エマニエルサンフラワー,エマニュエルサンフラワー,エマサン,The Emmanuelle Sunflower,アイリッシュ,ブルース,海賊'
+
 export default {
   mode: 'universal',
   /*
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s | ' + title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      {name: 'Keywords', content: 'エマニエルサンフラワー,エマニュエルサンフラワー,エマサン,アイリッシュ,ブルース,海賊'}
+      { hid: 'description', name: 'description', content: description },
+      {name: 'Keywords', content: Keywords },
+      { property: 'og:title', content: title },
+      { property: 'og:type', content: 'blog' },
+      { property: 'og:image', content: 'https://emma-sun.com/wp/wp-content/themes/moondogs00/images/ogplogo.png' },
+      { property: 'og:url', content: url },
+      { property: 'og:description', content: description },
+      { property: 'og:site_name', content: title },
+      { property: 'fb:app_id', content: '354574861220673' },
+      { property: 'og:locale', content: 'ja_JP'},
+      { name: 'twitter:card', content: 'summary_large_image'},
+      { name: 'twitter:site', content: '@E_Sunflower'},
+      { name: 'twitter:creator', content: '@E_Sunflower'},
+      { name: 'twitter:domain', content: 'emma-sun.com'},
     ],
     link: [
+      { rel: 'canonical', href: url },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Alfa+Slab+One|Noto+Sans+JP:400,500,700,900&display=swap&subset=japanese' },
     ]

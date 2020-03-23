@@ -1,6 +1,6 @@
 <template lang="pug">
   div.live-list-page.lower-page
-    h2.lower-page__title Live一覧
+    h2.lower-page__title {{ title }}
     ul.live-list-page__item
       li(v-for="item in items")
         nuxt-link(:to="'/live/' + item.id")
@@ -16,7 +16,13 @@ export default {
   layout:'post',
   data() {
     return {
+      title: 'Live',
       items: []
+    }
+  },
+  head() {
+    return {
+      title: this.title,
     }
   },
   async asyncData({ params }) {
