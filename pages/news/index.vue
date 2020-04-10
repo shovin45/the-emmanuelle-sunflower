@@ -4,8 +4,8 @@
     ul.news-list-page__item
       li(v-for="item in items")
         nuxt-link(:to="'/news/'+item.id")
-          h3  {{ item.title }}
-          p.news-list-page__item__date {{ dateTimeToDate(item.publishedAt) }}
+          h3  {{ item.title.rendered }}
+          p.news-list-page__item__date {{ dateTimeToDate(item.date) }}
           img.news-list-page__item__image(
             src="~/assets/images/pic-post-alpha-bg.png"
             alt=""
@@ -31,13 +31,10 @@ export default {
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
-      "https://tes.microcms.io/api/v1/information",
-      {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-      }
+      "http://emma-sun.com/wp-json/wp/v2/posts?categories=2",
     )
     return {
-      items: data.contents
+      items: data
     }
   },
   methods: {

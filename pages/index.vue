@@ -5,12 +5,12 @@ div
     div(v-swiper:mySwiper="swiperOption")
       div.swiper-wrapper
         div.swiper-slide.news-list(v-for="item in limitCount"): nuxt-link(:to="'news/' + item.id")
-          p {{ dateTimeToDate(item.publishedAt) }}
+          p {{ dateTimeToDate(item.date) }}
           img(
             src="~/assets/images/pic-post-alpha-bg.png"
             alt=""
             :style="{ 'background-image': setDefaultImage(item.image) }")
-          h3  {{ item.title }}
+          h3  {{ item.title.rendered }}
         div.swiper-slide.content__showmore: nuxt-link.button(to="news").linear-border: span.linear-border__inner Show More
     div.a-bg
   section.content.live
@@ -57,12 +57,9 @@ export default {
   async asyncData({ params }) {
       var { data } = await axios
       .get(
-        "https://tes.microcms.io/api/v1/information",
-        {
-          headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-        }
+        "http://emma-sun.com/wp-json/wp/v2/posts?categories=2",
       )
-      return { items: data.contents }
+      return { items: data }
 
   },
   methods: {

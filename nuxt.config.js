@@ -52,6 +52,7 @@ export default {
   */
   plugins: [
     {src:'~/plugins/vue-awesome-swiper', ssr:false},
+    { src: '~/plugins/vue-infinite-loading', ssr: false},
     {src: '~/plugins/common', ssr: true},
     '~/plugins/vue-scrollto',
   ],
@@ -102,12 +103,9 @@ export default {
   generate: {
   routes() {
     const posts = axios
-    .get("https://tes.microcms.io/api/v1/information", {
-      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-    })
+    .get("http://emma-sun.com/wp-json/wp/v2/posts?categories=2", )
     .then(res => {
-      console.log(res)
-      return res.data.contents.map(post => {
+      return res.data.map(post => {
         return "/news/" + post.id
       })
     })

@@ -31,7 +31,7 @@ export default {
     return this.isLoaded = true
   },
   loading: {
-    color: 'blue',
+    color: 'white',
     height: '5px'
   }
 }

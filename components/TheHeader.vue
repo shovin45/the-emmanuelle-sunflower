@@ -96,10 +96,11 @@ export default {
     .scroll-icon {
       position: absolute;
       bottom: 6vh;
-      left: 46%;
+      left: 0;
       z-index: 1;
       display: inline-block;
       animation: fade-loop 2s infinite linear;
+      width: 100%;
 
       @include mq() {
         bottom: 7vh;
@@ -108,6 +109,9 @@ export default {
       p {
         font-size: 0.5rem;
         margin: 0 0 5px 0;
+      }
+      img {
+        width: 40px;
       }
     }
 

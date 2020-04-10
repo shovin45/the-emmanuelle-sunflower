@@ -7,6 +7,7 @@
         li: nuxt-link(to="/live") Live
         li: nuxt-link(to="/band") Band
         li: nuxt-link(to="/music") Music
+        li: a(href="https://emmanuelle.buyshop.jp" target="_blank") Shop
         li: nuxt-link(to="/contact") Contact
       nuxt-link.tohome__footer(to="/"): img.footer__logo(src="../assets/images/logo-emma.png" alt="")
     ul.sns-icons__footer

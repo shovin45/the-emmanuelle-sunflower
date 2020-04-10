@@ -1,8 +1,8 @@
 <template lang="pug">
   article.news-article.lower-page
-    h2 {{ item.title }}
-    p.news-article__publishedAt {{ dateTimeToDate(item.publishedAt) }}
-    p.news-article__body(v-html="$md.render(item.body)")
+    h2 {{ item.title.rendered }}
+    p.news-article__publishedAt {{ dateTimeToDate(item.date) }}
+    p.news-article__body(v-html="$md.render(item.content.rendered)")
     div.inlineContent(v-html="item.inlineContent" v-if="item.inlineContent")
 </template>
 
@@ -19,15 +19,12 @@ export default {
   },
   head() {
     return {
-      title: this.item.title,
+      title: this.item.title.rendered,
     }
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
-      `https://tes.microcms.io/api/v1/information/${params.id}`,
-      {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-      }
+      `http://emma-sun.com/wp-json/wp/v2/posts/${params.id}`,
     );
     return {
       item: data
