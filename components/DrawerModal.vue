@@ -11,6 +11,7 @@ div
         li: nuxt-link(to="/live") Live
         li: nuxt-link(to="/band") Band
         li: nuxt-link(to="/music") Music
+        li: a(href="https://emmanuelle.buyshop.jp" target="_blank") Shop
         li: nuxt-link(to="/contact") Contact
       h4.drawer__title Follow us
       ul.sns-icons__drawer
