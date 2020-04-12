@@ -45,7 +45,7 @@ export default {
   },
   async asyncData() {
     const { data, headers } = await axios.get(
-      "http://emma-sun.com/wp-json/wp/v2/posts?categories=5", {
+      "https://emma-sun.com/wp-json/wp/v2/posts?categories=5", {
         params: {
           page: 1,
           per_page: 20,

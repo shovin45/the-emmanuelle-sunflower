@@ -29,7 +29,7 @@ export default {
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
-      "http://emma-sun.com/wp-json/wp/v2/posts?categories=3",
+      "https://emma-sun.com/wp-json/wp/v2/posts?categories=3",
     )
     return {
       items: data

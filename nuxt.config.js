@@ -103,7 +103,7 @@ export default {
   generate: {
   routes() {
     const posts = axios
-    .get("http://emma-sun.com/wp-json/wp/v2/posts?categories=2", )
+    .get("https://emma-sun.com/wp-json/wp/v2/posts?categories=2", )
     .then(res => {
       return res.data.map(post => {
         return "/news/" + post.id

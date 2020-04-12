@@ -57,7 +57,7 @@ export default {
   async asyncData({ params }) {
       const { data } = await axios
       .get(
-        "http://emma-sun.com/wp-json/wp/v2/posts?categories=2&_embed", {
+        "https://emma-sun.com/wp-json/wp/v2/posts?categories=2&_embed", {
           params: {
             page: 1,
             per_page: 3,
@@ -65,7 +65,7 @@ export default {
         }
       )
       const { liveData } = await axios.get(
-      "http://emma-sun.com/wp-json/wp/v2/posts?categories=5&_embed", {
+      "https://emma-sun.com/wp-json/wp/v2/posts?categories=5&_embed", {
           params: {
             page: 1,
             per_page: 4,
