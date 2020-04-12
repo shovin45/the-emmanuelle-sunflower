@@ -20,7 +20,6 @@ import TheFooter from '~/components/TheFooter.vue'
 export default {
   data() {
     return {
-      isLoaded: false,
     }
   },
   components: {
@@ -28,7 +27,6 @@ export default {
     TheFooter,
   },
   mounted () {
-    return this.isLoaded = true
   },
   loading: {
     color: 'white',

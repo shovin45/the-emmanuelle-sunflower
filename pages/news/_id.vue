@@ -3,7 +3,6 @@
     h2 {{ item.title.rendered }}
     p.news-article__publishedAt {{ dateTimeToDate(item.date) }}
     p.news-article__body(v-html="$md.render(item.content.rendered)")
-    div.inlineContent(v-html="item.inlineContent" v-if="item.inlineContent")
 </template>
 
 

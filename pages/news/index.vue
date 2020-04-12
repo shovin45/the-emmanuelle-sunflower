@@ -9,7 +9,7 @@
           img.news-list-page__item__image(
             src="~/assets/images/pic-post-alpha-bg.png"
             alt=""
-            :style="{ 'background-image': setDefaultImage(item.image) }")
+            :style="{ 'background-image': setDefaultImage(item) }")
 </template>
 
 <script>
@@ -30,9 +30,10 @@ export default {
     }
   },
   async asyncData({ params }) {
-    const { data } = await axios.get(
-      "http://emma-sun.com/wp-json/wp/v2/posts?categories=2",
-    )
+    const { data } = await axios
+      .get(
+        "http://emma-sun.com/wp-json/wp/v2/posts?categories=2&_embed",
+      )
     return {
       items: data
     }
@@ -40,9 +41,13 @@ export default {
   methods: {
     setDefaultImage(image) {
       var defaultImageUrl = defaultIamge
-      if(image) { return 'url(\'' + image.url + '\')' }
+      if(image["_embedded"]["wp:featuredmedia"]) { return 'url(\'' + image["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"]["source_url"] + '\')' }
       else { return 'url(\'' + defaultImageUrl + '\')' }
     }
+  },
+    loading: {
+    color: 'white',
+    height: '5px'
   }
 }
 </script>

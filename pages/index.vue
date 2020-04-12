@@ -4,18 +4,18 @@ div
     h2.content__title News
     div(v-swiper:mySwiper="swiperOption")
       div.swiper-wrapper
-        div.swiper-slide.news-list(v-for="item in limitCount"): nuxt-link(:to="'news/' + item.id")
+        div.swiper-slide.news-list(v-for="item in items"): nuxt-link(:to="'news/' + item.id")
           p {{ dateTimeToDate(item.date) }}
           img(
             src="~/assets/images/pic-post-alpha-bg.png"
             alt=""
-            :style="{ 'background-image': setDefaultImage(item.image) }")
+            :style="{ 'background-image': setDefaultImage(item) }")
           h3  {{ item.title.rendered }}
         div.swiper-slide.content__showmore: nuxt-link.button(to="news").linear-border: span.linear-border__inner Show More
     div.a-bg
   section.content.live
     h2.content__title Live Schedule
-    //- p 現在スケジュールされているライブはありません。
+    p.content__error(v-if="liveItems=[]") 現在スケジュールされているライブはありません。
     div.content__showmore: nuxt-link.button(to="live").linear-border: span.linear-border__inner Show More
     div.a-bg
   section.content.video
@@ -55,23 +55,31 @@ export default {
     }
   },
   async asyncData({ params }) {
-      var { data } = await axios
+      const { data } = await axios
       .get(
-        "http://emma-sun.com/wp-json/wp/v2/posts?categories=2",
+        "http://emma-sun.com/wp-json/wp/v2/posts?categories=2&_embed", {
+          params: {
+            page: 1,
+            per_page: 3,
+          }
+        }
       )
-      return { items: data }
+      const { liveData } = await axios.get(
+      "http://emma-sun.com/wp-json/wp/v2/posts?categories=5&_embed", {
+          params: {
+            page: 1,
+            per_page: 4,
+          }
+        }
+    )
+      return { items: data, liveItems: liveData }
 
   },
   methods: {
     setDefaultImage(image) {
       var defaultImageUrl = defaultIamge
-      if(image) { return 'url(\'' + image.url + '\')' }
+      if(image["_embedded"]["wp:featuredmedia"]) { return 'url(\'' + image["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["full"]["source_url"] + '\')' }
       else { return 'url(\'' + defaultImageUrl + '\')' }
-    }
-  },
-  computed: {
-    limitCount() {
-      return this.items.slice(0,3)
     }
   },
 }
@@ -123,7 +131,11 @@ export default {
       height: 30vh;
     }
   }
-
+  &__error {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
 }
 .news {
     background: url('~assets/images/bg-section-news.png') no-repeat;

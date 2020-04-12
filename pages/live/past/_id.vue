@@ -27,7 +27,7 @@ export default {
     );
     return {
       item: data
-    };
+    }
   },
 }
 </script>
