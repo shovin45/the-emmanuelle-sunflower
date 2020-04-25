@@ -120,12 +120,16 @@ export default {
         return "/live/" + live.id
       })
     })
-    .then(res2 => {
-      return res2.data.contents.map(live => {
-        return "/live/past/" + live.id
+    const pasts = axios
+    .get("https://tes.microcms.io/api/v1/live", {
+      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+    })
+    .then(res => {
+      return res.data.contents.map(past => {
+        return "/live/past/" + past.id
       })
     })
-      return axios.all([posts,lives]).then(values => {
+      return axios.all([posts,lives,pasts]).then(values => {
         return values.join().split(",");
       })
   }
