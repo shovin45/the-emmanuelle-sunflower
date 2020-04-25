@@ -23,7 +23,7 @@ export default {
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
-      `https://tes.microcms.io/api/v1/live/${params.id}?filters=isArchive[not_equals]true`,
+      `https://tes.microcms.io/api/v1/live/${params.id}?filters=isArchive[equals]true`,
       {
         headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
       }

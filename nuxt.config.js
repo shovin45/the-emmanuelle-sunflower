@@ -112,12 +112,17 @@ export default {
       })
     })
     const lives = axios
-    .get("https://tes.microcms.io/api/v1/live-schedule", {
+    .get("https://tes.microcms.io/api/v1/live", {
       headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+    })
+    .then(res => {
+      return res.data.contents.map(live => {
+        return "/live/" + live.id
+      })
     })
     .then(res2 => {
       return res2.data.contents.map(live => {
-        return "/live/" + live.id
+        return "/live/past/" + live.id
       })
     })
       return axios.all([posts,lives]).then(values => {
