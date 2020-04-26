@@ -41,6 +41,11 @@
         p: img(src="../assets/images/b-dai.png" alt="" width="300" height="180")
         p Daisuke Murakami
         p sax
+
+      li.member-list__item
+        p: img(src="../assets/images/b-now-printing.png" alt="" width="300" height="180")
+        p Ezaki Show
+        p mand.cho
 </template>
 
 <script>
