@@ -1,7 +1,7 @@
 <template lang="pug">
   div.live-list-page.lower-page
     h2.lower-page__title {{ title }}
-    ul.live-list-page__item__error(v-if="!items"): li 現在スケジュールされているライブはありません。
+    ul.live-list-page__item__error(v-if="items==0"): li 現在スケジュールされているライブはありません。
     ul.live-list-page__item(v-else)
       li(v-for="item in items")
         nuxt-link(:to="'/live/' + item.id")
@@ -9,7 +9,7 @@
           h3 {{ item.title }}
           p(v-if="item.location") {{ '@'+item.location }}
     div.past-live__link
-      nuxt-link.button.linear-border(to="/live/past") 過去ライブ アーカイブへ
+      nuxt-link.button.linear-border(to="/live/past"): span.linear-border__inner 過去ライブ アーカイブへ
 </template>
 
 <script>
