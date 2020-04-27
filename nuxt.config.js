@@ -35,7 +35,7 @@ export default {
       { rel: 'canonical', href: url },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Alfa+Slab+One|Noto+Sans+JP:400,500,700,900&display=swap&subset=japanese' },
-    ]
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -70,6 +70,7 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/dotenv',
     '@nuxtjs/markdownit',
+    'nuxt-polyfill'
   ],
   styleResources: {
     scss:[
@@ -84,6 +85,14 @@ export default {
     html: true,
     injected: true,
     preset: 'default',
+  },
+  polyfill: {
+    features: [
+      {
+        require: 'intersection-observer',
+        detect: () => 'IntersectionObserver' in window,
+      },
+    ]
   },
   /*
   ** Build configuration
