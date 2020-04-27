@@ -20,7 +20,7 @@ div
     div.a-bg
   section.content.video
     h2.content__title Video
-    iframe.content__video(src="https://www.youtube.com/embed/RIU_56FGPZs?controls=0&playsinline=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+    iframe.content__video(src="" data-src="https://www.youtube.com/embed/RIU_56FGPZs?controls=0&playsinline=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
     div.content__showmore: a.button.linear-border(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank"): span.linear-border__inner Show More
     div.a-bg
 
@@ -70,6 +70,25 @@ export default {
       var defaultImageUrl = defaultIamge
       if(image) { return 'url(\'' + image.url + '\')' }
       else { return 'url(\'' + defaultImageUrl + '\')' }
+    },
+    iframeDefer(entries, object) {
+      entries.forEach(function(entry, i) {
+          if (!entry.isIntersecting) return;
+          const frame = entry.target
+          if(frame.getAttribute('data-src')) {
+            frame.animate([
+              // keyframes
+              { opacity: 0 },
+              { opacity: 1 }
+            ], {
+              // timing options
+              easing: 'ease',
+              duration: 2500,
+            })
+            frame.setAttribute('src',frame.getAttribute('data-src'));
+          }
+          object.unobserve(frame)
+      })
     }
   },
   computed: {
@@ -77,6 +96,20 @@ export default {
       return this.items.slice(0,3)
     }
   },
+  mounted() {
+    var iframe = document.querySelectorAll("iframe")
+    var options = {
+      root: null,
+      rootMargin: "10px",
+      threshold: 0
+    }
+    var observer = new IntersectionObserver(this.iframeDefer, options)
+
+    iframe.forEach(function(frame) {
+      observer.observe(frame);
+    });
+
+  }
 }
 </script>
 
@@ -85,13 +118,13 @@ export default {
   align-items: center;
 }
 .swiper-slide {
-      width: 30%;
-    }
+  width: 30%;
+}
 
 @include mq() {
 .swiper-slide {
-      width: 60%;
-    }
+    width: 60%;
+  }
 }
 
 .content {
@@ -125,6 +158,7 @@ export default {
       width: 90vw;
       height: 30vh;
     }
+
   }
 
 }
