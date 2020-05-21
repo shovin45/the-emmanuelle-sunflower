@@ -24,7 +24,7 @@ export default {
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
-      "https://tes.microcms.io/api/v1/member",
+      "https://tes.microcms.io/api/v1/member?limit=20",
       {
         headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
       }
