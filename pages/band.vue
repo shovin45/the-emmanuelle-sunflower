@@ -1,17 +1,20 @@
-<template lang="pug">
-  div.lower-page
-    h2.lower-page__title {{ title }}
-    ul.member-list
-      li.member-list__item(v-for="item of items")
-        p: img(:src="item.image.url" alt="" width="300" height="180")
-        p {{ item.name }}
-        p {{ item.instrument }}
+<template>
+  <div class="lower-page">
+    <h2 class="lower-page__title">{{ title }}</h2>
+    <ul class="member-list">
+      <li v-for="(item, index) of items" :key="index" class="member-list__item">
+        <p><img :src="item.image.url" alt="" width="300" height="180" /></p>
+        <p>{{ item.name }}</p>
+        <p>{{ item.instrument }}</p>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-  layout:'post',
+  layout: 'post',
   data() {
     return {
       title: 'Band',
@@ -24,13 +27,13 @@ export default {
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
-      "https://tes.microcms.io/api/v1/member?limit=20",
+      'https://tes.microcms.io/api/v1/member?limit=20',
       {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
       }
     )
     return {
-      items: data.contents
+      items: data.contents,
     }
   },
 }

@@ -1,20 +1,26 @@
-<template lang="pug">
-  article.news-article.lower-page
-    h2 {{ item.title }}
-    p.news-article__publishedAt {{ dateTimeToDate(item.publishedAt) }}
-    p.news-article__body(v-html="$md.render(item.body)")
-    div.inlineContent(v-html="item.inlineContent" v-if="item.inlineContent")
+<template>
+  <article class="news-article lower-page">
+    <h2>{{ item.title }}</h2>
+    <p class="news-article__publishedAt">
+      {{ dateTimeToDate(item.publishedAt) }}
+    </p>
+    <p class="news-article__body" v-html="$md.render(item.body)"></p>
+    <div
+      v-if="item.inlineContent"
+      class="inlineContent"
+      v-html="item.inlineContent"
+    ></div>
+  </article>
 </template>
 
-
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  layout:'post',
+  layout: 'post',
   data() {
     return {
-      items: []
+      items: [],
     }
   },
   head() {
@@ -26,13 +32,13 @@ export default {
     const { data } = await axios.get(
       `https://tes.microcms.io/api/v1/information/${params.id}`,
       {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
       }
-    );
+    )
     return {
-      item: data
-    };
-  }
+      item: data,
+    }
+  },
 }
 </script>
 
@@ -61,13 +67,11 @@ export default {
 .inlineContent {
   margin: 30px auto 0;
   text-align: center;
-  iframe[src*="youtube.com"] {
+  iframe[src*='youtube.com'] {
     display: inline-block;
     @include mq() {
       width: 80%;
     }
   }
 }
-
-
 </style>

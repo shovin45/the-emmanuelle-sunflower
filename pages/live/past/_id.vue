@@ -1,19 +1,22 @@
-<template lang="pug">
-  article.live-article.lower-page
-    h2 {{ item.title }}
-    h3.live-article__playedAt {{ dateTimeToDate(item.playedAt) }}
-    h3(v-if="item.location") {{ '@' + item.location }}
-    p.live-article__body(v-html="$md.render(item.detail)")
+<template>
+  <article class="live-article lower-page">
+    <h2>{{ item.title }}</h2>
+    <h3 class="live-article__playedAt">{{ dateTimeToDate(item.playedAt) }}</h3>
+    <h3 v-if="item.location">
+      {{ '@' + item.location }}
+      <p class="live-article__body" v-html="$md.render(item.detail)"></p>
+    </h3>
+  </article>
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  layout:'post',
+  layout: 'post',
   data() {
     return {
-      items: []
+      items: [],
     }
   },
   head() {
@@ -25,12 +28,12 @@ export default {
     const { data } = await axios.get(
       `https://tes.microcms.io/api/v1/live/${params.id}?filters=isArchive[equals]true`,
       {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
       }
-    );
+    )
     return {
-      item: data
-    };
+      item: data,
+    }
   },
 }
 </script>

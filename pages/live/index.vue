@@ -1,26 +1,37 @@
-<template lang="pug">
-  div.live-list-page.lower-page
-    h2.lower-page__title {{ title }}
-    ul.live-list-page__item__error(v-if="items==0"): li 現在スケジュールされているライブはありません。
-    ul.live-list-page__item(v-else)
-      li(v-for="item in items")
-        nuxt-link(:to="'/live/' + item.id")
-          p {{ dateTimeToDate(item.playedAt) }}
-          h3 {{ item.title }}
-          p(v-if="item.location") {{ '@'+item.location }}
-    div.past-live__link
-      nuxt-link.button.linear-border(to="/live/past"): span.linear-border__inner 過去ライブ アーカイブへ
+<template>
+  <div class="live-list-page lower-page">
+    <h2 class="lower-page__title">{{ title }}</h2>
+    <ul v-if="items == 0" class="live-list-page__item__error">
+      <li>現在スケジュールされているライブはありません。</li>
+    </ul>
+    <ul v-else class="live-list-page__item">
+      <li v-for="item in items" :key="item.id">
+        <nuxt-link :to="'/live/' + item.id">
+          <p>{{ dateTimeToDate(item.playedAt) }}</p>
+          <h3>{{ item.title }}</h3>
+          <p v-if="item.location">{{ '@' + item.location }}</p>
+        </nuxt-link>
+      </li>
+    </ul>
+    <div class="past-live__link">
+      <nuxt-link class="button linear-border" to="/live/past"
+        ><span class="linear-border__inner"
+          >過去ライブ アーカイブへ</span
+        ></nuxt-link
+      >
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-  layout:'post',
+  layout: 'post',
   data() {
     return {
       title: 'Live',
-      items: []
+      items: [],
     }
   },
   head() {
@@ -30,13 +41,13 @@ export default {
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
-      "https://tes.microcms.io/api/v1/live?filters=isArchive[not_equals]true",
+      'https://tes.microcms.io/api/v1/live?filters=isArchive[not_equals]true',
       {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
+        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
       }
     )
     return {
-      items: data.contents
+      items: data.contents,
     }
   },
 }

@@ -1,13 +1,15 @@
-<template lang="pug">
-transition(name="page")
-  div
-    the-header
-    transition(name="fade")
-      loading-overlay(v-if="!isLoaded")
-
-    drawer-modal
-    nuxt
-    the-footer
+<template>
+  <transition name="page">
+    <div>
+      <the-header></the-header>
+      <transition name="fade">
+        <loading-overlay v-if="!isLoaded"></loading-overlay>
+      </transition>
+      <drawer-modal></drawer-modal>
+      <nuxt></nuxt>
+      <the-footer></the-footer>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -28,8 +30,8 @@ export default {
     DrawerModal,
     TheFooter,
   },
-  mounted () {
-      return this.isLoaded = true
-  }
+  mounted() {
+    return (this.isLoaded = true)
+  },
 }
 </script>

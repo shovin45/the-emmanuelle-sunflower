@@ -1,23 +1,28 @@
+import axios from '@nuxtjs/axios'
 require('dotenv').config()
-import axios from 'axios'
 
 const url = 'https://the-emmanuelle-sunflower.com'
 const title = 'The Emmanuelle Sunflower オフィシャルWebサイト'
-const description = 'ドカドカうるさいインディアンジプシーアイリッシュスカレゲエお祭りパンクトラディショナルファンキーロックンロールバンドのオフィシャルWebサイト'
-const Keywords = 'エマニエルサンフラワー,エマニュエルサンフラワー,エマサン,The Emmanuelle Sunflower,アイリッシュ,ブルース,海賊'
+const description =
+  'ドカドカうるさいインディアンジプシーアイリッシュスカレゲエお祭りパンクトラディショナルファンキーロックンロールバンドのオフィシャルWebサイト'
+const Keywords =
+  'エマニエルサンフラワー,エマニュエルサンフラワー,エマサン,The Emmanuelle Sunflower,アイリッシュ,ブルース,海賊'
 
 export default {
-  mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+  // Target: https://go.nuxtjs.dev/config-target
+  target: 'static',
+
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s | ' + title,
+    htmlAttrs: {
+      lang: 'ja',
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: description },
-      {name: 'Keywords', content: Keywords },
+      { name: 'Keywords', content: Keywords },
       { property: 'og:title', content: title },
       { property: 'og:type', content: 'blog' },
       { property: 'og:image', content: url + '/ogp.png' },
@@ -25,54 +30,103 @@ export default {
       { property: 'og:description', content: description },
       { property: 'og:site_name', content: title },
       { property: 'fb:app_id', content: '354574861220673' },
-      { property: 'og:locale', content: 'ja_JP'},
-      { name: 'twitter:card', content: 'summary_large_image'},
-      { name: 'twitter:site', content: '@E_Sunflower'},
-      { name: 'twitter:creator', content: '@E_Sunflower'},
-      { name: 'twitter:domain', content: 'emma-sun.com'},
+      { property: 'og:locale', content: 'ja_JP' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@E_Sunflower' },
+      { name: 'twitter:creator', content: '@E_Sunflower' },
+      { name: 'twitter:domain', content: 'emma-sun.com' },
     ],
     link: [
       { rel: 'canonical', href: url },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Alfa+Slab+One|Noto+Sans+JP:400,500,700,900&display=swap&subset=japanese' },
-    ]
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Alfa+Slab+One|Noto+Sans+JP:400,500,700,900&display=swap&subset=japanese',
+      },
+    ],
   },
-  /*
-  ** Customize the progress-bar color
-  */
-  // loading: '~/components/LoadingOverlay.vue',
-  /*
-  ** Global CSS
-  */
-  css: [
-    'swiper/dist/css/swiper.css',
-  ],
-  /*
-  ** Plugins to load before mounting the App
-  */
+
+  // Global CSS: https://go.nuxtjs.dev/config-css
+  css: [],
+
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src:'~/plugins/vue-awesome-swiper', ssr:false},
-    {src: '~/plugins/common', ssr: true},
+    { src: '~/plugins/vue-awesome-swiper', ssr: false },
+    { src: '~/plugins/common', ssr: true },
     '~/plugins/vue-scrollto',
   ],
-  build: {
-    vendor: ['vue-awesome-swiper']
-  },
-  /*
-  ** Nuxt.js dev-modules
-  */
+
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    // https://go.nuxtjs.dev/typescript
+    '@nuxt/typescript-build',
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
+  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/dotenv',
     '@nuxtjs/markdownit',
   ],
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {},
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+    vendor: ['vue-awesome-swiper'],
+  },
+
+  server: {
+    port: 8000, // デフォルト: 3000
+    host: '0.0.0.0', // デフォルト: localhost
+  },
+  generate: {
+    routes() {
+      const posts = axios
+        .get('https://tes.microcms.io/api/v1/information', {
+          headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
+        })
+        .then((res) => {
+          console.log(res)
+          return res.data.contents.map((post) => {
+            return '/news/' + post.id
+          })
+        })
+      const lives = axios
+        .get('https://tes.microcms.io/api/v1/live', {
+          headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
+        })
+        .then((res) => {
+          return res.data.contents.map((live) => {
+            return '/live/' + live.id
+          })
+        })
+      const pasts = axios
+        .get('https://tes.microcms.io/api/v1/live', {
+          headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
+        })
+        .then((res) => {
+          return res.data.contents.map((past) => {
+            return '/live/past/' + past.id
+          })
+        })
+      return axios.all([posts, lives, pasts]).then((values) => {
+        return values.join().split(',')
+      })
+    },
+  },
+  env: {
+    MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
+  },
+
   styleResources: {
-    scss:[
+    scss: [
       '~/assets/scss/style.scss',
       '~/assets/scss/sns-icons.scss',
       '~/assets/scss/button.scss',
@@ -84,57 +138,5 @@ export default {
     html: true,
     injected: true,
     preset: 'default',
-  },
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
-  },
-  server: {
-    port: 8000, // デフォルト: 3000
-    host: '0.0.0.0' // デフォルト: localhost
-  },
-  generate: {
-  routes() {
-    const posts = axios
-    .get("https://tes.microcms.io/api/v1/information", {
-      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-    })
-    .then(res => {
-      console.log(res)
-      return res.data.contents.map(post => {
-        return "/news/" + post.id
-      })
-    })
-    const lives = axios
-    .get("https://tes.microcms.io/api/v1/live", {
-      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-    })
-    .then(res => {
-      return res.data.contents.map(live => {
-        return "/live/" + live.id
-      })
-    })
-    const pasts = axios
-    .get("https://tes.microcms.io/api/v1/live", {
-      headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-    })
-    .then(res => {
-      return res.data.contents.map(past => {
-        return "/live/past/" + past.id
-      })
-    })
-      return axios.all([posts,lives,pasts]).then(values => {
-        return values.join().split(",");
-      })
-  }
-  },
-  env: {
-    MICROCMS_API_KEY: process.env.MICROCMS_API_KEY
   },
 }
