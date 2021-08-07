@@ -1,38 +1,36 @@
-<template lang="pug">
-  div.lower-page
-    h2.lower-page__title {{ title }}
-    ul.member-list
-      li.member-list__item(v-for="item of items")
-        p: img(:src="item.image.url" alt="" width="300" height="180")
-        p {{ item.name }}
-        p {{ item.instrument }}
+<template>
+  <div class="lower-page">
+    <h2 class="lower-page__title">{{ title }}</h2>
+    <ul class="member-list">
+      <li v-for="(item, index) of items" :key="index" class="member-list__item">
+        <p><img :src="item.image.url" alt="" width="300" height="180" /></p>
+        <p>{{ item.name }}</p>
+        <p>{{ item.instrument }}</p>
+      </li>
+    </ul>
+  </div>
 </template>
 
-<script>
-import axios from 'axios'
-export default {
-  layout:'post',
-  data() {
-    return {
-      title: 'Band',
-    }
-  },
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
+
+@Component({
+  layout: 'post',
+})
+export default class Band extends Vue {
+  title: string = 'Band'
+
+  async asyncData({ $axios }: Context): Promise<object> {
+    const { data } = await $axios.get('/member?limit=20')
+    return { items: data.contents }
+  }
+
   head() {
     return {
       title: this.title,
     }
-  },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      "https://tes.microcms.io/api/v1/member?limit=20",
-      {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-      }
-    )
-    return {
-      items: data.contents
-    }
-  },
+  }
 }
 </script>
 

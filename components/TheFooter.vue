@@ -1,21 +1,77 @@
-<template lang="pug">
-  footer.footer
-    p.backtotop: nuxt-link(v-scroll-to="'#__nuxt'" to) Back to Top #[img(src="../assets/images/icon-arrow-top.svg" alt="")]
-    div.display-flex__between.footer__navi
-      ul.navi-list
-        li: nuxt-link(to="/news") News
-        li: nuxt-link(to="/live") Live
-        li: nuxt-link(to="/band") Band
-        li: nuxt-link(to="/music") Music
-        li: a(href="https://emmanuelle.buyshop.jp" target="_blank") Shop
-        li: nuxt-link(to="/contact") Contact
-      nuxt-link.tohome__footer(to="/"): img.footer__logo(src="../assets/images/logo-emma.png" alt="")
-    ul.sns-icons__footer
-      li: a(href="https://twitter.com/E_Sunflower" target="_blank"): img(src="../assets/images/logo-twitter-white.svg" alt="公式Twitterへ 新しいウィンドウで開きます。")
-      li: a(href="https://www.instagram.com/the_emmanuelle_sunflower/" target="_blank"): img(src="../assets/images/logo-instagram-white.svg" alt="公式Instagramへ 新しいウィンドウで開きます。")
-      li: a(href="https://www.facebook.com/e.sunflower/" target="_blank"): img(src="../assets/images/logo-facebook-white.svg" alt="公式facebookへ 新しいウィンドウで開きます。")
-      li: a(href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg" target="_blank"): img(src="../assets/images/logo-youtube-white.svg" alt="公式YouTubeへ 新しいウィンドウで開きます。")
-    small Copyright (C) 2015 The Emmanuelle Sunflower.
+<template>
+  <footer class="footer">
+    <p class="backtotop">
+      <nuxt-link v-scroll-to="'#__nuxt'" to="">
+        Back to Top <img src="../assets/images/icon-arrow-top.svg" alt="" />
+      </nuxt-link>
+    </p>
+    <div class="display-flex__between footer__navi">
+      <ul class="navi-list">
+        <li>
+          <nuxt-link to="/news">News</nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/live">Live</nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/band">Band</nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/music">Music</nuxt-link>
+        </li>
+        <li>
+          <a href="https://emmanuelle.buyshop.jp" target="_blank">Shop</a>
+        </li>
+        <li>
+          <nuxt-link to="/contact">Contact</nuxt-link>
+        </li>
+      </ul>
+      <nuxt-link class="tohome__footer" to="/">
+        <img class="footer__logo" src="../assets/images/logo-emma.png" alt="" />
+      </nuxt-link>
+    </div>
+    <ul class="sns-icons__footer">
+      <li>
+        <a href="https://twitter.com/E_Sunflower" target="_blank">
+          <img
+            src="../assets/images/logo-twitter-white.svg"
+            alt="公式Twitterへ 新しいウィンドウで開きます。"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.instagram.com/the_emmanuelle_sunflower/"
+          target="_blank"
+        >
+          <img
+            src="../assets/images/logo-instagram-white.svg"
+            alt="公式Instagramへ 新しいウィンドウで開きます。"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/e.sunflower/" target="_blank">
+          <img
+            src="../assets/images/logo-facebook-white.svg"
+            alt="公式facebookへ 新しいウィンドウで開きます。"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.youtube.com/channel/UCzM1-I3D5_wG1M0PEBgo0vg"
+          target="_blank"
+        >
+          <img
+            src="../assets/images/logo-youtube-white.svg"
+            alt="公式YouTubeへ 新しいウィンドウで開きます。"
+          />
+        </a>
+      </li>
+    </ul>
+    <small>Copyright (C) 2015 The Emmanuelle Sunflower.</small>
+  </footer>
 </template>
 
 <style lang="scss">
@@ -43,7 +99,7 @@
   &__logo {
     width: 210px;
     @include mq() {
-    width: 140px;
+      width: 140px;
     }
   }
 
@@ -82,7 +138,6 @@
       }
     }
   }
-
 }
 
 .tohome__footer {
@@ -110,7 +165,6 @@
       color: #fff;
       transition: 0.3s;
     }
-
   }
 }
 

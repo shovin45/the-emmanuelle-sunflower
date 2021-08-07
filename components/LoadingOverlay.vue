@@ -1,23 +1,26 @@
-<template lang="pug">
-  div.loading-overlay
-    div.loading-content
-      div.breeding-rhombus-spinner
-        div.rhombus.child-1
-        div.rhombus.child-2
-        div.rhombus.child-3
-        div.rhombus.child-4
-        div.rhombus.child-5
-        div.rhombus.child-6
-        div.rhombus.child-7
-        div.rhombus.child-8
-        div.rhombus.big
-      p loading
-        span.dot.child-1 .
-        span.dot.child-2 .
-        span.dot.child-3 .
+<template>
+  <div class="loading-overlay">
+    <div class="loading-content">
+      <div class="breeding-rhombus-spinner">
+        <div class="rhombus child-1"></div>
+        <div class="rhombus child-2"></div>
+        <div class="rhombus child-3"></div>
+        <div class="rhombus child-4"></div>
+        <div class="rhombus child-5"></div>
+        <div class="rhombus child-6"></div>
+        <div class="rhombus child-7"></div>
+        <div class="rhombus child-8"></div>
+        <div class="rhombus big"></div>
+      </div>
+      <p>
+        loading
+        <span class="dot child-1">.</span>
+        <span class="dot child-2">.</span>
+        <span class="dot child-3">.</span>
+      </p>
+    </div>
+  </div>
 </template>
-
-
 
 <style lang="scss">
 .loading-overlay {
@@ -40,7 +43,9 @@
     animation-delay: -0.5s;
 
     span.dot {
-      &.child-1,&.child-2,&.child-3 {
+      &.child-1,
+      &.child-2,
+      &.child-3 {
         animation: word-visivle 2s infinite step-start forwards;
         opacity: 0;
       }
@@ -66,5 +71,4 @@
     opacity: 1;
   }
 }
-
 </style>

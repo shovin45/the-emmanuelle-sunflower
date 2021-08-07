@@ -1,58 +1,55 @@
-<template lang="pug">
-  div.news-list-page.lower-page
-    h2.lower-page__title {{ title }}
-    ul.news-list-page__item
-      li(v-for="item in items")
-        nuxt-link(:to="'/news/'+item.id")
-          h3  {{ item.title }}
-          p.news-list-page__item__date {{ dateTimeToDate(item.publishedAt) }}
-          img.news-list-page__item__image(
+<template>
+  <div class="news-list-page lower-page">
+    <h2 class="lower-page__title">{{ title }}</h2>
+    <ul class="news-list-page__item">
+      <li v-for="item in items" :key="item.id">
+        <nuxt-link :to="'/news/' + item.id">
+          <h3>{{ item.title }}</h3>
+          <p class="news-list-page__item__date">
+            {{ $dateTimeToDate(item.publishedAt) }}
+          </p>
+          <img
+            class="news-list-page__item__image"
             src="~/assets/images/pic-post-alpha-bg.png"
             alt=""
-            :style="{ 'background-image': setDefaultImage(item.image) }")
+            :style="{ 'background-image': setDefaultImage(item.image) }"
+          />
+        </nuxt-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
-<script>
-import axios from "axios"
-import defaultIamge from "~/assets/images/pic-post-default.png"
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
+import defaultIamge from '@/assets/images/pic-post-default.png'
 
-export default {
-  layout:'post',
-  data() {
-    return {
-      title: 'News',
-      items: []
-    }
-  },
+@Component({
+  layout: 'post',
+})
+export default class NewsIndex extends Vue {
+  title: string = 'News'
+
+  async asyncData({ $axios }: Context): Promise<object> {
+    const { data } = await $axios.get('/information')
+    return { items: data.contents }
+  }
+
   head() {
     return {
       title: this.title,
     }
-  },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      "https://tes.microcms.io/api/v1/information",
-      {
-        headers: { "X-API-KEY": process.env.MICROCMS_API_KEY }
-      }
-    )
-    return {
-      items: data.contents
-    }
-  },
-  methods: {
-    setDefaultImage(image) {
-      var defaultImageUrl = defaultIamge
-      if(image) { return 'url(\'' + image.url + '\')' }
-      else { return 'url(\'' + defaultImageUrl + '\')' }
-    }
+  }
+
+  setDefaultImage(image: { url: string }) {
+    return "url('" + (image ? image.url : defaultIamge) + "')"
   }
 }
 </script>
 
 <style lang="scss">
 .news-list-page {
-
   &__item {
     display: flex;
     flex-wrap: wrap;
@@ -88,5 +85,4 @@ export default {
     }
   }
 }
-
 </style>
