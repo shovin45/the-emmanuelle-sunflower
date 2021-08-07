@@ -74,24 +74,25 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+@Component({
   layout: 'post',
-  data() {
-    return {
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      agreed: false,
-      title: 'Contact',
-    }
-  },
+})
+export default class Contact extends Vue {
+  name: string = ''
+  email: string = ''
+  phone: string = ''
+  message: string = ''
+  agreed: boolean = false
+  title: string = 'Contact'
+
   head() {
     return {
       title: this.title,
     }
-  },
+  }
 }
 </script>
 

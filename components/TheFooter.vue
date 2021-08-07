@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <p class="backtotop">
-      <nuxt-link v-scroll-to="'#__nuxt'" to="to">
+      <nuxt-link v-scroll-to="'#__nuxt'" to="">
         Back to Top <img src="../assets/images/icon-arrow-top.svg" alt="" />
       </nuxt-link>
     </p>

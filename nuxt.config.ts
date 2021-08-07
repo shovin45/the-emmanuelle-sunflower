@@ -1,14 +1,15 @@
-import axios from '@nuxtjs/axios'
+import { NuxtConfig } from '@nuxt/types'
+import axiosBase from 'axios'
 require('dotenv').config()
 
-const url = 'https://the-emmanuelle-sunflower.com'
-const title = 'The Emmanuelle Sunflower オフィシャルWebサイト'
-const description =
+const url: string = 'https://the-emmanuelle-sunflower.com'
+const title: string = 'The Emmanuelle Sunflower オフィシャルWebサイト'
+const description: string =
   'ドカドカうるさいインディアンジプシーアイリッシュスカレゲエお祭りパンクトラディショナルファンキーロックンロールバンドのオフィシャルWebサイト'
-const Keywords =
+const Keywords: string =
   'エマニエルサンフラワー,エマニュエルサンフラワー,エマサン,The Emmanuelle Sunflower,アイリッシュ,ブルース,海賊'
 
-export default {
+const nuxtConfig: NuxtConfig = {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -75,12 +76,15 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'https://tes.microcms.io/api/v1',
+    headers: {
+      common: { 'X-API-KEY': process.env.MICROCMS_API_KEY as string },
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    vendor: ['vue-awesome-swiper'],
-  },
+  build: {},
 
   server: {
     port: 8000, // デフォルト: 3000
@@ -88,41 +92,34 @@ export default {
   },
   generate: {
     routes() {
-      const posts = axios
-        .get('https://tes.microcms.io/api/v1/information', {
-          headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
+      const axios = axiosBase.create({
+        baseURL: 'https://tes.microcms.io/api/v1',
+        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
+      })
+
+      const posts = axios.get('/information').then(({ data }: any): string => {
+        return data.contents.map(({ id }: any) => {
+          return '/news/' + id
         })
-        .then((res) => {
-          console.log(res)
-          return res.data.contents.map((post) => {
-            return '/news/' + post.id
-          })
+      })
+      const lives = axios.get('/live').then(({ data }: any): string => {
+        return data.contents.map(({ id }: any) => {
+          return '/live/' + id
         })
-      const lives = axios
-        .get('https://tes.microcms.io/api/v1/live', {
-          headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
+      })
+      const pasts = axios.get('/live').then(({ data }: any): string => {
+        return data.contents.map(({ id }: any) => {
+          return '/live/past/' + id
         })
-        .then((res) => {
-          return res.data.contents.map((live) => {
-            return '/live/' + live.id
-          })
-        })
-      const pasts = axios
-        .get('https://tes.microcms.io/api/v1/live', {
-          headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-        })
-        .then((res) => {
-          return res.data.contents.map((past) => {
-            return '/live/past/' + past.id
-          })
-        })
-      return axios.all([posts, lives, pasts]).then((values) => {
+      })
+      return Promise.all([posts, lives, pasts]).then((values: any): string => {
         return values.join().split(',')
       })
     },
   },
+
   env: {
-    MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
+    MICROCMS_API_KEY: String(process.env.MICROCMS_API_KEY),
   },
 
   styleResources: {
@@ -135,8 +132,11 @@ export default {
     ],
   },
   markdownit: {
-    html: true,
-    injected: true,
     preset: 'default',
+    linkify: true,
+    breaks: true,
+    runtime: true,
   },
 }
+
+export default nuxtConfig

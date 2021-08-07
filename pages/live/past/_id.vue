@@ -1,40 +1,34 @@
 <template>
   <article class="live-article lower-page">
     <h2>{{ item.title }}</h2>
-    <h3 class="live-article__playedAt">{{ dateTimeToDate(item.playedAt) }}</h3>
+    <h3 class="live-article__playedAt">{{ $dateTimeToDate(item.playedAt) }}</h3>
     <h3 v-if="item.location">
       {{ '@' + item.location }}
-      <p class="live-article__body" v-html="$md.render(item.detail)"></p>
+      <p v-if="item.detail" class="live-article__body" v-html="item.detail"></p>
     </h3>
   </article>
 </template>
 
-<script>
-import axios from 'axios'
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
 
-export default {
+@Component({
   layout: 'post',
-  data() {
-    return {
-      items: [],
-    }
-  },
-  head() {
-    return {
-      title: this.item.title,
-    }
-  },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      `https://tes.microcms.io/api/v1/live/${params.id}?filters=isArchive[equals]true`,
-      {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-      }
+})
+export default class PastLiveId extends Vue {
+  async asyncData({ params, $axios }: Context): Promise<object> {
+    const { data } = await $axios.get(
+      `/live/${params.id}?filters=isArchive[equals]true`
     )
+    return { item: data }
+  }
+
+  head({ item }: any) {
     return {
-      item: data,
+      title: item.title,
     }
-  },
+  }
 }
 </script>
 

@@ -9,7 +9,7 @@
         <h3>{{ item.title }}</h3>
         <p v-if="item.subTitle">{{ item.subTitle }}</p>
         <p v-if="item.releasedAt">
-          {{ dateTimeToDate(item.releasedAt) }} release
+          {{ $dateTimeToDate(item.releasedAt) }} release
         </p>
         <p v-if="item.productNumber">{{ item.productNumber }}</p>
         <p v-if="item.recordLabel">{{ item.recordLabel }}</p>
@@ -25,41 +25,35 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
-export default {
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
+
+@Component({
   layout: 'post',
-  data() {
-    return {
-      title: 'DISCOGRAPHY',
-    }
-  },
+})
+export default class Music extends Vue {
+  title: string = 'DISCOGRAPHY'
+
+  async asyncData({ $axios }: Context): Promise<object> {
+    const { data } = await $axios.get('/discography')
+    return { items: data.contents }
+  }
+
   head() {
     return {
       title: this.title,
     }
-  },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      'https://tes.microcms.io/api/v1/discography',
-      {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-      }
-    )
-    return {
-      items: data.contents,
+  }
+
+  IntegerToPrice(value: string) {
+    if (value) {
+      const num = Number(value)
+      return '¥ ' + num.toLocaleString() + ' (tax in.)'
+    } else {
+      return 'SOLD OUT'
     }
-  },
-  methods: {
-    IntegerToPrice(value) {
-      if (value) {
-        var num = Number(value)
-        return '¥ ' + num.toLocaleString() + ' (tax in.)'
-      } else {
-        return 'SOLD OUT'
-      }
-    },
-  },
+  }
 }
 </script>
 

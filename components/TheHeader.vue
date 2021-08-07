@@ -19,7 +19,7 @@
       </picture>
     </div>
     <div class="scroll-icon">
-      <nuxt-link v-scroll-to="'#news'" to="to">
+      <nuxt-link v-scroll-to="'#news'" to="">
         <p>Scroll</p>
         <img src="../assets/images/icon-arrow-down.svg" alt="" />
       </nuxt-link>
@@ -28,16 +28,15 @@
   </header>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      titleStart: false,
-    }
-  },
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+@Component
+export default class TheHeader extends Vue {
+  titleStart: boolean = false
+
   mounted() {
-    return (this.titleStart = true)
-  },
+    this.titleStart = true
+  }
 }
 </script>
 

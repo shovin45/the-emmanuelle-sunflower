@@ -6,7 +6,7 @@
           <nuxt-link class="tohome" to="/">
             <img
               class="header__logo"
-              src="../assets/images/logo-emma.png"
+              src="@/assets/images/logo-emma.png"
               alt=""
             />
           </nuxt-link>
@@ -21,27 +21,15 @@
   </div>
 </template>
 
-<script>
-import DrawerModal from '~/components/DrawerModal.vue'
-import TheFooter from '~/components/TheFooter.vue'
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+@Component
+export default class Post extends Vue {
+  isLoaded: boolean = false
 
-export default {
-  data() {
-    return {
-      isLoaded: false,
-    }
-  },
-  components: {
-    DrawerModal,
-    TheFooter,
-  },
   mounted() {
-    return (this.isLoaded = true)
-  },
-  loading: {
-    color: 'blue',
-    height: '5px',
-  },
+    this.isLoaded = true
+  }
 }
 </script>
 

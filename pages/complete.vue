@@ -9,20 +9,21 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+@Component({
   layout: 'post',
-  data() {
-    return {
-      title: 'お問い合わせ受付完了',
-    }
-  },
+})
+export default class Complete extends Vue {
+  title: string = 'お問い合わせ受付完了'
+
   head() {
     return {
       titleTemplate: '',
       title: this.title,
       meta: [{ name: 'robots', content: 'noindex,nofollow' }],
     }
-  },
+  }
 }
 </script>

@@ -6,7 +6,7 @@
         <nuxt-link :to="'/news/' + item.id">
           <h3>{{ item.title }}</h3>
           <p class="news-list-page__item__date">
-            {{ dateTimeToDate(item.publishedAt) }}
+            {{ $dateTimeToDate(item.publishedAt) }}
           </p>
           <img
             class="news-list-page__item__image"
@@ -20,44 +20,31 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
-import defaultIamge from '~/assets/images/pic-post-default.png'
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
+import defaultIamge from '@/assets/images/pic-post-default.png'
 
-export default {
+@Component({
   layout: 'post',
-  data() {
-    return {
-      title: 'News',
-      items: [],
-    }
-  },
+})
+export default class NewsIndex extends Vue {
+  title: string = 'News'
+
+  async asyncData({ $axios }: Context): Promise<object> {
+    const { data } = await $axios.get('/information')
+    return { items: data.contents }
+  }
+
   head() {
     return {
       title: this.title,
     }
-  },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      'https://tes.microcms.io/api/v1/information',
-      {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-      }
-    )
-    return {
-      items: data.contents,
-    }
-  },
-  methods: {
-    setDefaultImage(image) {
-      var defaultImageUrl = defaultIamge
-      if (image) {
-        return "url('" + image.url + "')"
-      } else {
-        return "url('" + defaultImageUrl + "')"
-      }
-    },
-  },
+  }
+
+  setDefaultImage(image: { url: string }) {
+    return "url('" + (image ? image.url : defaultIamge) + "')"
+  }
 }
 </script>
 

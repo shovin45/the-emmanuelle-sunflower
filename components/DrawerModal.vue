@@ -91,12 +91,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isNavMenu: false,
-    }
-  },
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+@Component
+export default class DrawerModal extends Vue {
+  isNavMenu: boolean = false
 }
 </script>

@@ -11,31 +11,26 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
-export default {
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
+
+@Component({
   layout: 'post',
-  data() {
-    return {
-      title: 'Band',
-    }
-  },
+})
+export default class Band extends Vue {
+  title: string = 'Band'
+
+  async asyncData({ $axios }: Context): Promise<object> {
+    const { data } = await $axios.get('/member?limit=20')
+    return { items: data.contents }
+  }
+
   head() {
     return {
       title: this.title,
     }
-  },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      'https://tes.microcms.io/api/v1/member?limit=20',
-      {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-      }
-    )
-    return {
-      items: data.contents,
-    }
-  },
+  }
 }
 </script>
 

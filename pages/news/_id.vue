@@ -2,9 +2,9 @@
   <article class="news-article lower-page">
     <h2>{{ item.title }}</h2>
     <p class="news-article__publishedAt">
-      {{ dateTimeToDate(item.publishedAt) }}
+      {{ $dateTimeToDate(item.publishedAt) }}
     </p>
-    <p class="news-article__body" v-html="$md.render(item.body)"></p>
+    <p v-if="item.body" class="news-article__body" v-html="item.body"></p>
     <div
       v-if="item.inlineContent"
       class="inlineContent"
@@ -13,32 +13,24 @@
   </article>
 </template>
 
-<script>
-import axios from 'axios'
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
 
-export default {
+@Component({
   layout: 'post',
-  data() {
+})
+export default class NewsId extends Vue {
+  async asyncData({ params, $axios }: Context): Promise<object> {
+    const { data } = await $axios.get(`/information/${params.id}`)
+    return { item: data }
+  }
+
+  head({ item }: any) {
     return {
-      items: [],
+      title: item.title,
     }
-  },
-  head() {
-    return {
-      title: this.item.title,
-    }
-  },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      `https://tes.microcms.io/api/v1/information/${params.id}`,
-      {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-      }
-    )
-    return {
-      item: data,
-    }
-  },
+  }
 }
 </script>
 

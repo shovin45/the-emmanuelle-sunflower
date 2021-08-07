@@ -1,16 +1,16 @@
 <template>
   <div>
-    <section class="content news" id="news">
+    <section id="news" class="content news">
       <h2 class="content__title">News</h2>
       <div v-swiper:mySwiper="swiperOption">
         <div class="swiper-wrapper">
           <div
-            v-for="(item, index) in limitCount"
+            v-for="(item, index) in limitCounts"
             :key="index"
             class="swiper-slide news-list"
           >
             <nuxt-link :to="'news/' + item.id">
-              <p>{{ dateTimeToDate(item.publishedAt) }}</p>
+              <p>{{ $dateTimeToDate(item.publishedAt) }}</p>
               <img
                 src="~/assets/images/pic-post-alpha-bg.png"
                 alt=""
@@ -60,57 +60,42 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
 import defaultIamge from '~/assets/images/pic-post-default.png'
 
-// debugger
-export default {
-  data() {
-    return {
-      swiperOption: {
-        slidesPerView: 'auto',
-        centeredSlides: true,
-        spaceBetween: 30,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        // freeMode: true
-      },
-      items: [],
-      liveItems: [],
-    }
-  },
+@Component
+export default class Index extends Vue {
+  swiperOption: any = {
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 30,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  }
+
+  async asyncData({ $axios }: Context): Promise<object> {
+    const { data } = await $axios.get('/information')
+    return { items: data.contents }
+  }
+
+  get limitCounts() {
+    const self: any = this
+    return self.items.slice(0, 3)
+  }
+
   head() {
     return {
       title: 'トップ',
     }
-  },
-  async asyncData({ params }) {
-    var { data } = await axios.get(
-      'https://tes.microcms.io/api/v1/information',
-      {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-      }
-    )
-    return { items: data.contents }
-  },
-  methods: {
-    setDefaultImage(image) {
-      var defaultImageUrl = defaultIamge
-      if (image) {
-        return "url('" + image.url + "')"
-      } else {
-        return "url('" + defaultImageUrl + "')"
-      }
-    },
-  },
-  computed: {
-    limitCount() {
-      return this.items.slice(0, 3)
-    },
-  },
+  }
+
+  setDefaultImage(image: { url: string }) {
+    return "url('" + (image ? image.url : defaultIamge) + "')"
+  }
 }
 </script>
 
